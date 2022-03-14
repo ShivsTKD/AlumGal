@@ -1,6 +1,11 @@
 {% extends "layout.html" %}
 {% block title %}Login{% endblock %}
 {% block page %}Login{% endblock %}
+{% block nav %}
+<ul class="right" id="nav-mobile">
+    <li><a href="/signup">Signup</a></li>
+</ul>
+{% endblock %}
 
 {{ super() }}
 
@@ -9,14 +14,14 @@
     <form class="card col s12" method="post" action="/login" style="padding: 1em;">
         <div class="row">
             <div class="input-field col s12">
+                <input class="validate" type="email" name="email" autofocus required>
                 <label for="email" class="active">Email</label> 
-                <input class="validate" type="email" name="email">
             </div>
         </div>
         <div class="row">
             <div class="input-field col s12">
+                <input class="validate" type="password" name="password" required>
                 <label for="password">Password</label> 
-                <input class="validate" type="password" name="password">
             </div>
         </div>
         <input type="submit" class="blue text-white btn" value="Submit">

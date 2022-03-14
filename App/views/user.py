@@ -22,7 +22,9 @@ def get_login_page():
 
 @user_views.route('/signup', methods=['GET'])
 def get_signup_page():
-
+    # programmes
+    # degrees
+    # departments
     return render_template('signup.html')
 
 @user_views.route('/signup', methods=['POST'])
