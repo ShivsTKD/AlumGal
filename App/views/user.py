@@ -22,7 +22,13 @@ def get_login_page():
 
 @user_views.route('/signup', methods=['GET'])
 def get_signup_page():
+
     return render_template('signup.html')
+
+@user_views.route('/signup', methods=['POST'])
+def post_signup_info():
+    data = request.form
+    return jsonify(data)
 
 @user_views.route('/api/users')
 def client_app():

@@ -44,13 +44,48 @@
     <div class="container" id="content">{% block content %}{% endblock %}</div>
 
     <script>
+      function populateYears(){
+        const yearSelect = document.getElementById('year');
+        let year = new Date().getFullYear();
+        for (let i = 0; i < 101; i++){
+          const option = document.createElement('option');
+          option.textContent = year - i;
+          yearSelect.appendChild(option); 
+        }
+      }
+      populateYears();
+
       document.addEventListener('DOMContentLoaded', function() {
           let elems = document.querySelectorAll('select');
           let instances = M.FormSelect.init(elems);
-          M.Tabs.init(document.querySelector('.tabs'))
+          M.Tabs.init(document.querySelector('.tabs'));
       });
+
+      let password = document.getElementById("password");
+      let confirm_password = document.getElementById("confirm_password");
+
+      function validatePassword(){
+        if(password.value != confirm_password.value) {
+          confirm_password.setCustomValidity("Passwords Don't Match");
+        } else {
+          confirm_password.setCustomValidity('Passwords Match');
+        }
+      }
+
+      password.onchange = validatePassword();
+      confirm_password.onkeyup = validatePassword();
+
+      function E_Tab(){
+        M.Tabs.getInstance(document.querySelector('.tabs')).select('education-info');
+        setTimeout(() => {
+          history.replaceState('', document.title, window.location.origin + window.location.pathname + window.location.search)
+        }, 5);
+      }
+
+      function S_Tab(){
+        M.Tabs.getInstance(document.querySelector('.tabs')).select('social-info');
+      }
     </script>
     <script src="https://cdnjs.cloudflare.com/ajax/libs/materialize/1.0.0/js/materialize.min.js"></script>
-    <script src = "https://code.jquery.com/jquery-2.1.1.min.js"></script>
   </body>
 </html>
