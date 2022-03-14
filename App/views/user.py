@@ -11,10 +11,18 @@ from App.controllers import (
 user_views = Blueprint('user_views', __name__, template_folder='../templates')
 
 
-@user_views.route('/users', methods=['GET'])
-def get_user_page():
-    users = get_all_users()
-    return render_template('users.html', users=users)
+# @user_views.route('/users', methods=['GET'])
+# def get_user_page():
+#     users = get_all_users()
+#     return render_template('users.html', users=users)
+
+@user_views.route('/login', methods=['GET'])
+def get_login_page():
+    return render_template('login.html')
+
+@user_views.route('/signup', methods=['GET'])
+def get_signup_page():
+    return render_template('signup.html')
 
 @user_views.route('/api/users')
 def client_app():
