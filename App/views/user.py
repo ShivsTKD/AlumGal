@@ -1,6 +1,6 @@
 from flask import Blueprint, render_template, jsonify, request, send_from_directory
 from flask_jwt import jwt_required
-
+from App.forms import *
 
 from App.controllers import (
     create_user, 
@@ -29,8 +29,17 @@ def get_signup_page():
 
 @user_views.route('/signup', methods=['POST'])
 def post_signup_info():
-    data = request.form
-    return jsonify(data)
+    form = SignUp()
+    if form.validate_on_submit():
+        data = request.form
+        done = create_user(username = data['username'], password = data['password'],email = data['email'])
+        if done:
+            alert('Signup successful')
+        else:
+            alert('username or email already in use')
+    return render_template('page.html',form=form) #change page to whatever template
+
+    #return jsonify(data)
 
 @user_views.route('/api/users')
 def client_app():

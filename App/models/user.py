@@ -5,6 +5,7 @@ class User(db.Model):
     id = db.Column(db.Integer, primary_key=True)
     username =  db.Column(db.String, nullable=False, unique=True)
     password = db.Column(db.String(120), nullable=False)
+    email = db.Column(db.String, nullable=False, unique=True)
 
     def __init__(self, username, password):
         self.username = username
@@ -13,7 +14,8 @@ class User(db.Model):
     def toDict(self):
         return{
             'id': self.id,
-            'username': self.username
+            'username': self.username,
+            'email': self.email
         }
 
     def set_password(self, password):
