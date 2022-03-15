@@ -23,6 +23,8 @@ def get_login_page():
 
 @user_views.route('/signup', methods=['GET'])
 def get_signup_page():
+    form = ProfileForm()
+    form.programme.choices = [(p.id,p.name)for p in Programme.query.order_by('name')]
     # programmes
     # degrees
     # departments
