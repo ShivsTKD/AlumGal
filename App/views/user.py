@@ -6,6 +6,7 @@ from App.controllers import (
     create_user, 
     get_all_users,
     get_all_users_json,
+    authenticate
 )
 
 user_views = Blueprint('user_views', __name__, template_folder='../templates')
@@ -39,7 +40,19 @@ def post_signup_info():
             alert('username or email already in use')
     return render_template('page.html',form=form) #change page to whatever template
 
-    #return jsonify(data)
+@user_views.route('/login', methods = ['POST'])
+def account_login():
+    form = LoginForm()
+    if form.validate_on_submit():
+        data = request.form
+        user = authenticate(username = data['username'], password = data['password'])
+        if user:
+            login_user(user)
+            alert('Login successful')
+        else:
+            alert('Wrong username or password')
+
+    return render_template('page.html', form = form) #change page to whatever template
 
 @user_views.route('/api/users')
 def client_app():
