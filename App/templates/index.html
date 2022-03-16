@@ -1,10 +1,22 @@
 {% extends "layout.html" %}
-{% block title %}AlumGal{% endblock %}
-{% block page %}AlumGal{% endblock %}
+{% block title %}UCE Alumni Gallery{% endblock %}
+{% block page %}Alumni Gallery{% endblock %}
+{% block nav %}
+<ul id="nav-mobile" class="left">
+    <li><a href="/">Home</a></li>
+    <li><a href="/users">Users Jinja</a></li>
+    <li><a href="/static/users">Users JS</a></li>
+</ul>
+<ul class="right">
+    <li><a href="#!">Logout</a></li>    
+</ul>
+{% endblock%}
 
 {{ super() }}
 
-{% block content %}
-    <h1>Flask MVC</h1>
-    <p>This is a boileplate flask application which follows the MVC pattern for structuring the project.</p>
+{% block content %}   
+<img src="https://github.com/ShivsTKD/AlumGal/blob/e9b1db7b616986c5701f5f10a35c5e25b0944406/images/fig1.png" alt="Test"> 
+<h1>Welcome to the Alumni Gallery for The University of Computing and Engineering!</h1>
+<p>Search for Alumni Members by common programmes, departments, faculties, etc.
+    You can connect with all of your fellow graduates with the click of a button.</p>
 {% endblock %}
