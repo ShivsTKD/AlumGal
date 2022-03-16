@@ -1,6 +1,7 @@
 from flask import Blueprint, render_template, jsonify, request, send_from_directory
 from flask_jwt import jwt_required
 from App.forms import *
+from App.models import *
 
 from App.controllers import (
     create_user, 
@@ -23,12 +24,26 @@ def get_login_page():
 
 @user_views.route('/signup', methods=['GET'])
 def get_signup_page():
-    form = ProfileForm()
-    form.programme.choices = [(p.id,p.name)for p in Programme.query.order_by('name')]
-    # programmes
-    # degrees
-    # departments
-    return render_template('signup.html')
+    form = SignUp()
+    options = Programme.query.all()
+    programmes = []
+    degrees = []
+    departments = []
+    faculties = []
+    for option in options:
+        if option['name'] not in programmes:
+            programmes.append(option['name'])
+        if option['degree'] not in programmes:
+            degrees.append(option['degree'])
+        if option['department'] not in programmes:
+            departments.append(option['department'])
+        if option['faculty'] not in programmes:
+            faculties.append(option['faculty'])
+    form.programme.choices = programmes
+    form.degree.choices = degrees
+    form.department.choices = departments
+    form.faculty.choices = faculties
+    return render_template('signup.html', form=form)
 
 @user_views.route('/signup', methods=['POST'])
 def post_signup_info():

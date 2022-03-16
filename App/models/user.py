@@ -3,9 +3,10 @@ from App.database import db
 
 class User(db.Model):
     id = db.Column('id', db.Integer, primary_key=True)
-    username =  db.Column('username', db.String, nullable=False, unique=True)
+    username =  db.Column('username', db.String(60), nullable=False, unique=True)
     password = db.Column('password', db.String(120), nullable=False)
-    email = db.Column('email', db.String, nullable=False, unique=True)
+    email = db.Column('email', db.String(60), nullable=False, unique=True)
+    profiles = db.relationship('Profile', backref='user', lazy=True)
 
     def __init__(self, username, password):
         self.username = username

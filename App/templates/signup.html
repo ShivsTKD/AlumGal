@@ -19,32 +19,32 @@
                 <div id="personal-info" class="col s12">
                     <div class="row">
                         <div class="input-field col s12">
-                            <input class="validate" type="text" name="fname" autofocus="autofocus" required>
-                            <label for="fname">First Name</label> 
+                            {{ form.first_name(class="validate", autofocus=true) }}
+                            <label>First Name</label> 
                         </div>
                     </div>
                     <div class="row">
                         <div class="input-field col s12">
-                            <input class="validate" type="text" name="lname" required>
-                            <label for="lname">Last Name</label> 
+                            {{ form.last_name(class="validate") }}
+                            <label>Last Name</label> 
                         </div>
                     </div>
                     <div class="row">
                         <div class="input-field col s12">
-                            <input class="validate" type="email" name="email" required>
-                            <label for="email">Email</label> 
+                            {{ form.email(class="validate") }}
+                            <label>Email</label> 
                         </div>
                     </div>
                     <div class="row">
                         <div class="input-field col s12">
-                            <input class="validate" type="password" name="password" id="password" required>
-                            <label for="password">Password</label>
+                            {{ form.password(class="validate", id="password", onkeyup="validatePassword()") }}
+                            <label>Password</label>
                         </div>
                     </div>
                     <div class="row">
                         <div class="input-field col s12">
-                            <input class="validate" type="password" name="confirmpwd" id="confirm_password" oninput="validatePassword()" required>
-                            <label for="confirmpwd">Confirm Password</label> 
+                            {{ form.confirmpwd(class="validate", id="confirm_password", onkeyup="validatePassword()") }}
+                            <label>Confirm Password</label> 
                         </div>
                     </div>
                     <a class="waves-effect waves-light btn green" href="#education-info" onclick="E_Tab()">Continue</a>
@@ -54,13 +54,7 @@
                 <div id="education-info" class="col s12">
                     <div class="row">
                         <div class="input-field col s12">
-                            <select name="programme" class="validate" required>
-                                <option value="" disabled selected> - Any - </option>
-                                <option value="1">1</option>
-                                {% for programme in programmes %}
-                                <option value="{{programme}}">{{programme}}</option>
-                                {% endfor %}
-                            </select>
+                            {{ form.programme(class="validate") }}
                             <label>Programme</label> 
                         </div>
                     </div>
@@ -121,8 +115,9 @@
                             <label for="in">LinkedIn</label>
                         </div>
                     </div>
+
+                    {{form.submit}}
                     
-                    <input type="submit" class="blue text-white btn" value="Submit">
                 </div>
             </div>
         </div>

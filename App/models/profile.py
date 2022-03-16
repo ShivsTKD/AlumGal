@@ -1,10 +1,10 @@
-
 from App.database import db
+
 class Profile(db.Model):
-    p_id = db.Column('pid',db.Integer,primary_key=True)
-    u_id = db.Column('uid',db.Integer, db.ForeignKey('User.id'),nullable=False)
-    first_name = db.Column('first_name',db.String,nullable=False)
-    last_name = db.Column('last_name',db.String,nullable=False)
+    pid = db.Column('pid',db.Integer,primary_key=True)
+    uid = db.Column('uid',db.Integer, db.ForeignKey('user.id'),nullable=False)
+    first_name = db.Column('first_name',db.String(60),nullable=False)
+    last_name = db.Column('last_name',db.String(60),nullable=False)
     programme_id = db.Column('programme',db.Integer,db.ForeignKey('programme.id'),nullable=False)
     graduation_year = db.Column('graduation_year',db.Integer,nullable=False)
 
