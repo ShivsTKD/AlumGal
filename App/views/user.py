@@ -49,7 +49,9 @@ def get_signup_page():
 @user_views.route('/signup', methods=['POST'])
 def post_signup_info():
     form = SignUp(request.form)
-    return jsonify(form)
+    image = request.files['img']
+    filename = photos.save(image, name=f"{1}.jpg")
+    return filename
     # if form.validate_on_submit():
     #     data = request.form
     #     done = create_user(username = data['username'], password = data['password'],email = data['email'])

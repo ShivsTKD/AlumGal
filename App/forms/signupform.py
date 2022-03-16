@@ -1,6 +1,10 @@
 from flask_wtf import FlaskForm
+from flask_uploads import UploadSet, IMAGES
+from flask_wtf.file import FileField, FileAllowed, FileRequired
 from wtforms import StringField, PasswordField, SubmitField, SelectField, URLField
-from wtforms.validators import InputRequired, EqualTo, Email, Regexp
+from wtforms.validators import InputRequired, EqualTo, Email
+
+photos = UploadSet('photos', IMAGES)
 
 class SignUp(FlaskForm):
     username = StringField(validators=[InputRequired()])
@@ -17,4 +21,4 @@ class SignUp(FlaskForm):
     fb = URLField()
     ig = URLField()
     l_in = URLField()
-    submit = SubmitField(render_kw={'class': 'btn waves-effect waves-light green'})
+    img = FileField(validators=[FileRequired(), FileAllowed(photos, message='Images Only!')])
