@@ -11,11 +11,11 @@
     <form class="card" method="post" action="/signup" style="padding: 1em;">
         <div class="row">
             <div class="col s12">
-                <ul class="tabs tabs-fixed-width">
+                <ul class="tabs tabs-fixed-width" style="margin-bottom: 1em;">
                     <li class="tab col s3"><a href="#personal-info">Personal</a></li>
                     <li class="tab col s3"><a href="#education-info">Education</a></li>
                     <li class="tab col s3"><a href="#social-info">Social</a></li>
-                  </ul>
+                </ul>
                 <div id="personal-info" class="col s12">
                     <div class="row">
                         <div class="input-field col s12">
@@ -60,31 +60,25 @@
                     </div>
                     <div class="row">
                         <div class="input-field col s12">
-                            <select name="degree" required>
-                                <option value="" disabled selected> - Any - </option>
-                                <option value="1">1</option>
-                                {% for degree in degrees %}
-                                <option value="{{degree}}">{{degree}}</option>
-                                {% endfor %}
-                            </select>
+                            {{ form.degree(class="validate") }}
                             <label>Degree</label>
                         </div>
                     </div>
                     <div class="row">
                         <div class="input-field col s12">
-                            <select name="department" required>
-                                <option value="" disabled selected> - Any - </option>
-                                <option value="1">1</option>
-                                {% for department in departments %}
-                                <option value="{{department}}">{{department}}</option>
-                                {% endfor %}
-                            </select>
+                            {{ form.department(class="validate") }}
                             <label>Department</label>
                         </div>
                     </div>
                     <div class="row">
                         <div class="input-field col s12">
-                            <select name="year" id="year" required></select>
+                            {{ form.faculty(class="validate") }}
+                            <label>Faculty</label>
+                        </div>
+                    </div>
+                    <div class="row">
+                        <div class="input-field col s12">
+                            {{ form.grad_year(class="validate", id="year") }}
                             <label for="year">Graduation Year</label>
                         </div>
                     </div>
@@ -92,27 +86,27 @@
                 </div>
 
                 <div id="social-info" class="col s12">
-                    <div class="section center green-text">Link Your Social Media Accounts To Connect With Each Other</div>
-                    <div class="divider"></div>
+                    <div class="section center" style="color: #ee6e73;">Link Your Social Media Accounts To Connect With Each Other</div>
+                    <div class="divider green" style="margin-bottom: 1em;"></div>
                     <div class="row">
                         <div class="input-field col s12">
                             <i class="fa fa-facebook prefix"></i>
-                            <input type="url" name="fb">
-                            <label for="fb">Facebook</label>
+                            {{ form.fb }}
+                            <label>Facebook</label>
                         </div>
                     </div>
                     <div class="row">
                         <div class="input-field col s12">
                             <i class="fa fa-instagram prefix"></i>
-                            <input type="url" name="ig">
-                            <label for="ig">Instagram</label>
+                            {{ form.ig }}
+                            <label>Instagram</label>
                         </div>
                     </div>
                     <div class="row">
                         <div class="input-field col s12">
                             <i class="fa fa-linkedin prefix"></i>
-                            <input type="url" name="in">
-                            <label for="in">LinkedIn</label>
+                            {{ form.l_in }}
+                            <label>LinkedIn</label>
                         </div>
                     </div>
 

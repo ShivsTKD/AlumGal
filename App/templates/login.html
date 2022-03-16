@@ -14,17 +14,18 @@
     <form class="card col s12" method="post" action="/login" style="padding: 1em;">
         <div class="row">
             <div class="input-field col s12">
-                <input class="validate" type="email" name="email" autofocus required>
-                <label for="email" class="active">Email</label> 
+                {{ form.username(class="validate", autofocus=true) }}
+                <label>Username</label> 
             </div>
         </div>
         <div class="row">
             <div class="input-field col s12">
-                <input class="validate" type="password" name="password" required>
-                <label for="password">Password</label> 
+                {{ form.password(class="validate") }}
+                <label>Password</label> 
             </div>
         </div>
-        <input type="submit" class="blue text-white btn" value="Submit">
+        
+        {{ form.submit }}
     </form>
 </main>
 {% endblock %}

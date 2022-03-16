@@ -6,11 +6,11 @@ class User(db.Model):
     username =  db.Column('username', db.String(60), nullable=False, unique=True)
     password = db.Column('password', db.String(120), nullable=False)
     email = db.Column('email', db.String(60), nullable=False, unique=True)
-    profiles = db.relationship('Profile', backref='user', lazy=True)
 
-    def __init__(self, username, password):
+    def __init__(self, username, password, email):
         self.username = username
         self.set_password(password)
+        self.email = email
 
     def toDict(self):
         return{

@@ -20,16 +20,17 @@ user_views = Blueprint('user_views', __name__, template_folder='../templates')
 
 @user_views.route('/login', methods=['GET'])
 def get_login_page():
-    return render_template('login.html')
+    form = Login()
+    return render_template('login.html', form=form)
 
 @user_views.route('/signup', methods=['GET'])
 def get_signup_page():
     form = SignUp()
     options = Programme.query.all()
-    programmes = []
-    degrees = []
-    departments = []
-    faculties = []
+    programmes = ['Comp Sci', 'Mathematics']
+    degrees = ['B.Sc.', 'M.Sc.']
+    departments = ['DCIT', 'DM']
+    faculties = ['FST', 'FSS']
     for option in options:
         if option['name'] not in programmes:
             programmes.append(option['name'])
@@ -47,29 +48,33 @@ def get_signup_page():
 
 @user_views.route('/signup', methods=['POST'])
 def post_signup_info():
-    form = SignUp()
-    if form.validate_on_submit():
-        data = request.form
-        done = create_user(username = data['username'], password = data['password'],email = data['email'])
-        if done:
-            alert('Signup successful')
-        else:
-            alert('username or email already in use')
-    return render_template('page.html',form=form) #change page to whatever template
+    form = SignUp(request.form)
+    return jsonify(form)
+    # if form.validate_on_submit():
+    #     data = request.form
+    #     done = create_user(username = data['username'], password = data['password'],email = data['email'])
+    #     if done:
+    #         alert('Signup successful')
+    #     else:
+    #         alert('username or email already in use')
+    # return render_template('page.html',form=form) #change page to whatever template
 
 @user_views.route('/login', methods = ['POST'])
 def account_login():
-    form = LoginForm()
+    form = Login(request.form)
     if form.validate_on_submit():
-        data = request.form
-        user = authenticate(username = data['username'], password = data['password'])
-        if user:
-            login_user(user)
-            alert('Login successful')
-        else:
-            alert('Wrong username or password')
+        return 'This is it'
+    return jsonify(form.data)
+    # if form.validate_on_submit():
+    #     data = request.form
+    #     user = authenticate(username = data['username'], password = data['password'])
+    #     if user:
+    #         login_user(user)
+    #         alert('Login successful')
+    #     else:
+    #         alert('Wrong username or password')
 
-    return render_template('page.html', form = form) #change page to whatever template
+    # return render_template('page.html', form = form) #change page to whatever template
 
 @user_views.route('/api/users')
 def client_app():

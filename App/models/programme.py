@@ -14,5 +14,6 @@ class Programme(db.Model):
             'name': self.name,
             'degree': self.degree,
             'department': self.department,
-            'faculty': self.faculty
+            'faculty': self.faculty,
+            'profiles': self.profiles
         }
