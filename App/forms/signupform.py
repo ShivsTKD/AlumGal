@@ -12,7 +12,7 @@ class SignUp(FlaskForm):
     last_name = StringField(validators=[InputRequired()])
     email = StringField(validators=[InputRequired()])
     password = PasswordField(validators=[InputRequired(), EqualTo('confirmpwd', message='Passwords must match')])
-    confirmpwd  = PasswordField()
+    confirmpwd  = PasswordField(validators=[InputRequired(), EqualTo('password')])
     programme = SelectField(validators=[InputRequired()])
     degree = SelectField(validators=[InputRequired()])
     department = SelectField(validators=[InputRequired()])

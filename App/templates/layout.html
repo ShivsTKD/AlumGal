@@ -68,6 +68,12 @@
           M.Tabs.init(document.querySelector('.tabs'));
       });
 
+      document.getElementById("signupform").addEventListener("keydown", (e)=>{
+          if (e.keyCode === 13){
+           // e.preventDefault();
+          }
+      });
+
       let password = document.querySelector("#password");
       let confirm_password = document.querySelector("#confirm_password");
 
@@ -76,7 +82,11 @@
         if(password.value == confirm_password.value) {
           confirm_password.classList.remove('invalid');
           confirm_password.classList.add('valid');
-        }        
+          confirm_password.setCustomValidity('');
+        }   
+        else {
+          confirm_password.setCustomValidity('Passwords Must Match');
+        }     
       }
 
       function E_Tab(){
