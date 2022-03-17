@@ -18,11 +18,11 @@
       body{
         background-color: rgb(238, 238, 238);
       }
-
+      
     </style>
   </head>
   <body>
-    <nav class="green">
+    <nav class="green" style="position: fixed;">
       <div class="nav-wrapper">
         <a href="#!" class="brand-logo center">{% block page %}{% endblock %}</a>
         <div class="nav-wrapper">
@@ -49,6 +49,7 @@
     <div class="container" id="content">{% block content %}{% endblock %}</div>
     <script src="https://cdnjs.cloudflare.com/ajax/libs/materialize/1.0.0/js/materialize.min.js"></script>
     <script>
+      M.AutoInit();
       function populateYears(){
         const yearSelect = document.getElementById('year');
         let year = new Date().getFullYear();
@@ -59,13 +60,7 @@
         }
       }
       populateYears();
-
-      document.addEventListener('DOMContentLoaded', function() {
-        M.Parallax.init(document.querySelectorAll('.parallax'));
-        M.FormSelect.init(document.querySelectorAll('select'));
-        M.Tabs.init(document.querySelector('.tabs'));
-      });
-
+      
       let password = document.querySelector("#password");
       let confirm_password = document.querySelector("#confirm_password");
 
