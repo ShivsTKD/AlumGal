@@ -12,13 +12,11 @@ def authenticate(username, password):
     if user and user.check_password(password):
         return user
 
-# Payload is a dictionary which is passed to the function by Flask JWT
 def identity(payload):
     return User.query.get(payload['identity'])
 
 def login_user(user, remember):
     return login_user(user, remember=remember)
-
 
 def logout_user():
     logout_user()
