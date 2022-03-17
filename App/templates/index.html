@@ -14,9 +14,18 @@
 
 {{ super() }}
 
-{% block content %}   
-<img src="https://github.com/ShivsTKD/AlumGal/blob/e9b1db7b616986c5701f5f10a35c5e25b0944406/images/fig1.png" alt="Test"> 
-<h1>Welcome to the Alumni Gallery for The University of Computing and Engineering!</h1>
+{% block content %}  
+<div class="card-panel">
+    <div class="row valign-wrapper">
+        <div class="col s2">
+            <img src="/static/pictures/Logo.png" alt="UCE Logo">
+        </div>
+        <div class="col s10">
+            <h3>Welcome to the Alumni Gallery for The University of Computing and Engineering!</h3>
+        </div>
+    </div>
+</div>
+
 <p>Search for Alumni Members by common programmes, departments, faculties, etc.
     You can connect with all of your fellow graduates with the click of a button.</p>
 {% endblock %}
