@@ -14,11 +14,18 @@
 
 {{ super() }}
 
+{% block bg %}
+<div class="parallax-container">
+    <div class="parallax">
+        <img class="responsive-img" src="/static/pictures/HomeBackground.jpeg">
+    </div>
+</div>
+{% endblock %}
 {% block content %}  
 <div class="card-panel">
     <div class="row valign-wrapper">
         <div class="col s2">
-            <img src="/static/pictures/Logo.png" alt="UCE Logo">
+            <img class="responsive-img" src="/static/pictures/Logo.png" alt="UCE Logo">
         </div>
         <div class="col s10">
             <h3>Welcome to the Alumni Gallery for The University of Computing and Engineering!</h3>
