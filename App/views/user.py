@@ -82,7 +82,32 @@ def account_logout():
     alert('Logout successful')
     return redirect('/login')
 
+@user_views.route('/advsearch', methods=['GET'])
+@login_required
+def advsearch():
+    fields = dict()
+    form = AdvSearch()
+    #need to add choice for each select field
+    data = request.form()
+    results=[]
+    for key in data:
+        if data[key] != None:
+            fields[key] = data[key]
 
+    profiles = db.session.query(
+        Profile.first_name, 
+        Profile.last_name,
+        Programme.name,
+        Programme.department,
+        Profile.graduation_year
+    ).join(Profile).join(Programme).all()
+
+    for attr, value in fields.items():
+        profiles = profiles.filter(getattr(form, attr).like("%%%s%%" % value))
+
+    for item in profiles:
+        results.append(item.__dict__())
+    return  results
 
 
 
