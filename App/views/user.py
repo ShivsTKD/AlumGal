@@ -1,5 +1,6 @@
 from flask import Blueprint, render_template, jsonify, request, send_from_directory
 from flask_jwt import jwt_required
+from flask_login import login_required
 from App.forms import *
 from App.models import *
 
