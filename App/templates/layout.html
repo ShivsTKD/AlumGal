@@ -15,16 +15,13 @@
       input[type="submit"]{
         color: white;
       }
-      body{
-        background-color: rgb(238, 238, 238);
-      }
       
     </style>
   </head>
   <body>
-    <nav class="green" style="position: fixed;">
+    <nav class="indigo accent-4" style="position: fixed; z-index: 1;">
       <div class="nav-wrapper">
-        <a href="#!" class="brand-logo center">{% block page %}{% endblock %}</a>
+        <a href="/" class="brand-logo center">{% block page %}{% endblock %}</a>
         <div class="nav-wrapper">
           {% block nav %}{% endblock %}
         </div>
@@ -46,7 +43,7 @@
     {% endwith %}
     
     {% block bg %}{% endblock%}
-    <div class="container" id="content">{% block content %}{% endblock %}</div>
+    <div class="container" id="content" style="padding-top: 1em;">{% block content %}{% endblock %}</div>
     <script src="https://cdnjs.cloudflare.com/ajax/libs/materialize/1.0.0/js/materialize.min.js"></script>
     <script>
       M.AutoInit();
