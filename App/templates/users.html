@@ -1,30 +1,9 @@
 {% extends "layout.html" %}
-{% block title %}App Users{% endblock %}
-{% block page %}App Users{% endblock %}
+{% block title %}{{user.first_name}} {{user.last_name}}{% endblock %}
+{% block page %}{{user.first_name}} {{user.last_name}}{% endblock %}
 
 {{ super() }}
 
 {% block content %}
-    <div class="row">
-        <p>
-            This is table is renderd on the Server. Flask gets the data from the database and uses jinja templates to dyanmically render this page when a request is sent to <a href="/usrs">/users</a>.
-        </p>
-    </div>
-    <div class="row">
-      <table>
-        <thead>
-          <tr>
-            <th>Id</th><th>Username</th>
-          </tr>
-        </thead>
-        <tbody>
-          {% for user in users %}
-            <tr>
-                <td>{{user.id}}</td>
-                <td>{{user.username}}</td>
-            </tr>
-          {% endfor %}
-        <tbody>
-      </table>
-    </div>
+   <!--This page is to be rendered when a specific user is selected--->
 {% endblock %}

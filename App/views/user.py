@@ -26,21 +26,13 @@ def get_signup_page():
     options = Programme.query.all()
     programmes = ['Comp Sci', 'Mathematics']
     degrees = ['B.Sc.', 'M.Sc.']
-    departments = ['DCIT', 'DM']
-    faculties = ['FST', 'FSS']
+    grad_years = ['2020', '2021', '2022']
     for option in options:
         if option['name'] not in programmes:
             programmes.append(option['name'])
-        if option['degree'] not in programmes:
-            degrees.append(option['degree'])
-        if option['department'] not in programmes:
-            departments.append(option['department'])
-        if option['faculty'] not in programmes:
-            faculties.append(option['faculty'])
     form.programme.choices = programmes
     form.degree.choices = degrees
-    form.department.choices = departments
-    form.faculty.choices = faculties
+    form.grad_year.choices = grad_years
     return render_template('signup.html', form=form)
 
 @user_views.route('/signup', methods=['POST'])

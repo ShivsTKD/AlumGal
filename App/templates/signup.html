@@ -2,7 +2,11 @@
 {% block title %}Signup{% endblock %}
 {% block page %}Signup{% endblock %}
 
-{% block nav %}{% endblock %}
+{% block nav %}
+<ul class="right" id="nav-mobile">
+    <li><a href="/login">Login</a></li>
+</ul>
+{% endblock %}
 
 {{ super() }}
 
@@ -20,7 +24,7 @@
                     <div class="row">
                         <div class="input-field col s12">
                             {{ form.username(class="validate", autofocus=true) }}
-                            <label>Userame</label> 
+                            <label>Username</label> 
                         </div>
                     </div>
                     <div class="row">
@@ -57,7 +61,7 @@
                         <div class="file-field input-field">
                             <div class="btn green">
                                 <i class="material-icons">camera_alt</i>
-                                {{ form.img(class="validate", accept="image/*") }}
+                                {{ form.img(class="validate", accept="image/*", oninvalid="this.setCustomValidity('Please Upload An Image')", oninput="this.setCustomValidity('')") }}
                             </div>
                             <div class="file-path-wrapper">
                                 <input type="text" class="file-path validate" placeholder="Upload Image Here">
@@ -79,18 +83,6 @@
                         <div class="input-field col s12">
                             {{ form.degree(class="validate") }}
                             <label>Degree</label>
-                        </div>
-                    </div>
-                    <div class="row">
-                        <div class="input-field col s12">
-                            {{ form.department(class="validate") }}
-                            <label>Department</label>
-                        </div>
-                    </div>
-                    <div class="row">
-                        <div class="input-field col s12">
-                            {{ form.faculty(class="validate") }}
-                            <label>Faculty</label>
                         </div>
                     </div>
                     <div class="row">

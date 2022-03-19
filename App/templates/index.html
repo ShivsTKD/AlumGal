@@ -2,9 +2,9 @@
 {% block title %}UCE Alumni Gallery{% endblock %}
 {% block page %}UCE Alumni Gallery{% endblock %}
 {% block nav %}
-<ul id="nav-mobile" class="fixed left">
+<ul id="nav-mobile" class="left">
     <li><a href="/">Home</a></li>
-    <li><a href="/users">Users Jinja</a></li>
+    <li><a href="/users">Alumni Members</a></li>
     <li><a href="/static/users">Users JS</a></li>
 </ul>
 <ul class="right">
@@ -16,23 +16,26 @@
 
 {% block bg %}
 
-<div class="parallax-container" style="height: 100vh;">
+<div class="parallax-container valign-wrapper" style="height: 100vh;">
+    <div class="row">
+    <div class="col s4 card" style="border-radius: 5px; background-color: rgba(255, 255, 255, 0.5); margin-top: 6em;">
+        <div class="container center">
+            <div class="row" style="padding-top: 3em;">
+                <img class="responsive-img circle" src="/static/pictures/Logo.png" alt="UCE Logo">
+            </div>
+            <div class="row">
+                <h3>Alumni Gallery for The University of Computing and Engineering</h3>
+            </div>
+        </div>
+    </div>
+    </div>
     <div class="parallax">
         <img class="responsive-img" src="/static/pictures/bg.jpg" alt="Home Background">
     </div>
 </div>
 {% endblock %}
 {% block content %}  
-<div>
-    <div class="row valign-wrapper">
-        <div class="col s2">
-            <img class="responsive-img" src="/static/pictures/Logo.png" alt="UCE Logo">
-        </div>
-        <div class="col s10">
-            <h3>Welcome to the Alumni Gallery for The University of Computing and Engineering!</h3>
-        </div>
-    </div>
-</div>
+
 
 <p>Search for Alumni Members by common programmes, departments, faculties, etc.
     You can connect with all of your fellow graduates with the click of a button.</p>
