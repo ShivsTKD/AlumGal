@@ -6,6 +6,7 @@ from App.models import *
 
 from App.controllers import (
     create_user, 
+    get_user,
     get_all_users,
     get_all_users_json,
     login_user,
@@ -101,7 +102,15 @@ def advsearch():
         results.append(item.__dict__())
     return  results
 
+@user_views.route('/users', methods=['GET'])
+def list_users():
+    users = get_all_users()
+    return render_template('users.html', users=users)
 
+@user_views.route('/users/<username>', methods=['GET'])
+def get_user_page(username):
+    user = get_user(username)
+    return render_template('user.html', user=user)
 
 @user_views.route('/api/users')
 def client_app():
@@ -112,10 +121,7 @@ def client_app():
 def lol():
     return 'lol'
 
-@user_views.route('/users', methods=['GET'])
-def get_user_page():
-    users = get_all_users()
-    return render_template('users.html', users=users)
+
 
 @user_views.route('/static/users')
 def static_user_page():

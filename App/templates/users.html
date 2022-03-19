@@ -1,9 +1,19 @@
 {% extends "layout.html" %}
-{% block title %}{{user.first_name}} {{user.last_name}}{% endblock %}
-{% block page %}{{user.first_name}} {{user.last_name}}{% endblock %}
+{% block title %}Alumni Members{% endblock %}
+{% block page %}Alumni Members{% endblock %}
+{% block nav %}
+<ul id="nav-mobile" class="left">
+   <li><a href="/">Home</a></li>
+   <li><a href="/users">Alumni Members</a></li>
+   <li><a href="/static/users">Users JS</a></li>
+</ul>
+<ul class="right">
+   <li><a href="/logout">Logout</a></li>    
+</ul>
+{% endblock %}
 
 {{ super() }}
 
 {% block content %}
-   <!--This page is to be rendered when a specific user is selected--->
+   <!--This page is to be rendered with a list of all users--->
 {% endblock %}
