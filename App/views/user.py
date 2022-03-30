@@ -11,7 +11,8 @@ from App.controllers import (
     get_all_users_json,
     login_user,
     logout_user,
-    authenticate
+    authenticate,
+    search
 )
 
 user_views = Blueprint('user_views', __name__, template_folder='../templates')
@@ -101,6 +102,12 @@ def advsearch():
     for item in profiles:
         results.append(item.__dict__())
     return  results
+
+@user_views.route('/search/<fname>+<lname>', methods=['GET'])
+@login_required
+def search(fname, lname):
+    #search by first name , last name or both
+    result = search(fname,lname)
 
 @user_views.route('/users', methods=['GET'])
 def list_users():
