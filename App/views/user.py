@@ -26,20 +26,6 @@ def get_login_page():
 @user_views.route('/signup', methods=['GET'])
 def get_signup_page():
     form = SignUp()
-    options = Programme.query.all()# to remove
-    programmes = ['Comp Sci', 'Mathematics'] # to remove
-    degrees = ['B.Sc.', 'M.Sc.'] # to remove
-    grad_years = ['2020', '2021', '2022'] # to remove
-    for option in options: # to remove
-        if option['name'] not in programmes:
-            programmes.append(option['name'])
-    form.programme.choices = programmes# to remove
-    form.degree.choices = degrees# to remove
-    form.grad_year.choices = grad_years# to remove
-    # marked by " to remove " are line that need to be removed 
-    # degree and year to be removed as  degree cannot be set separately unless a seperate table for it is created for it
-    # and all distinct years are being pulled form the database to add to the field table
-    # refer to the forms
     return render_template('signup.html', form=form)
 
 @user_views.route('/signup', methods=['POST'])
