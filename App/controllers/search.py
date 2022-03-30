@@ -1,7 +1,7 @@
 from App.models import Profile
 from App.database import db
 
-def search(fname,lname):
+def user_search(fname,lname):
     results = []
     if fname == None and lname != None:
         #search by last name
@@ -19,5 +19,19 @@ def search(fname,lname):
         results.append(u.toDict)
     return results
 
-def advsearch():
-    pass
+def advsearch(fields):
+    valid_fields = dict()
+    results = []
+    profiles = Profile.query.all()
+    for key in fields:
+        if fields[key] != None:
+            vaild_fields[key] = fields[key]
+    
+    for key, value in valid_fields.items:
+        profiles = profiles.filter(getattr(form, attr).like("%%%s%%" % value))
+    
+    for profile in profiles:
+        results.append(profile.toDict)
+
+    return results
+    

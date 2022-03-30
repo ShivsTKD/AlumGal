@@ -14,9 +14,13 @@ class SignUp(FlaskForm):
     password = PasswordField(validators=[InputRequired(), EqualTo('confirmpwd', message='Passwords must match')])
     confirmpwd  = PasswordField(validators=[InputRequired(), EqualTo('password')])
     programme = SelectField(validators=[InputRequired()])
-    degree = SelectField(validators=[InputRequired()])
-    grad_year = SelectField(validators=[InputRequired()])
+    degree = SelectField(validators=[InputRequired()]) # to remove
+    grad_year = SelectField(validators=[InputRequired()]) # change to integer field
     fb = URLField()
     ig = URLField()
     l_in = URLField()
     img = FileField(validators=[FileRequired(), FileAllowed(photos, message='Images Only!')])
+
+    def __init(self):
+        self.programme.choices = [(p.id, p.name) for p in Programme.query.all()]
+        

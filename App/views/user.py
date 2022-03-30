@@ -12,7 +12,8 @@ from App.controllers import (
     login_user,
     logout_user,
     authenticate,
-    search
+    user_search,
+    adv_search
 )
 
 user_views = Blueprint('user_views', __name__, template_folder='../templates')
@@ -25,16 +26,20 @@ def get_login_page():
 @user_views.route('/signup', methods=['GET'])
 def get_signup_page():
     form = SignUp()
-    options = Programme.query.all()
-    programmes = ['Comp Sci', 'Mathematics']
-    degrees = ['B.Sc.', 'M.Sc.']
-    grad_years = ['2020', '2021', '2022']
-    for option in options:
+    options = Programme.query.all()# to remove
+    programmes = ['Comp Sci', 'Mathematics'] # to remove
+    degrees = ['B.Sc.', 'M.Sc.'] # to remove
+    grad_years = ['2020', '2021', '2022'] # to remove
+    for option in options: # to remove
         if option['name'] not in programmes:
             programmes.append(option['name'])
-    form.programme.choices = programmes
-    form.degree.choices = degrees
-    form.grad_year.choices = grad_years
+    form.programme.choices = programmes# to remove
+    form.degree.choices = degrees# to remove
+    form.grad_year.choices = grad_years# to remove
+    # marked by " to remove " are line that need to be removed 
+    # degree and year to be removed as  degree cannot be set separately unless a seperate table for it is created for it
+    # and all distinct years are being pulled form the database to add to the field table
+    # refer to the forms
     return render_template('signup.html', form=form)
 
 @user_views.route('/signup', methods=['POST'])
@@ -79,35 +84,19 @@ def account_logout():
 @user_views.route('/advsearch', methods=['GET'])
 @login_required
 def advsearch():
-    fields = dict()
+    
     form = AdvSearch()
-    #need to add choice for each select field
-    data = request.form()
-    results=[]
-    for key in data:
-        if data[key] != None:
-            fields[key] = data[key]
+    data = request.form.to_dict()
+    results = adv_search(data)
+    return results
 
-    profiles = db.session.query(
-        Profile.first_name, 
-        Profile.last_name,
-        Programme.name,
-        Programme.department,
-        Profile.graduation_year
-    ).join(Profile).join(Programme).all()
-
-    for attr, value in fields.items():
-        profiles = profiles.filter(getattr(form, attr).like("%%%s%%" % value))
-
-    for item in profiles:
-        results.append(item.__dict__())
-    return  results
 
 @user_views.route('/search/<fname>+<lname>', methods=['GET'])
 @login_required
-def search(fname, lname):
+def user_search(fname, lname):
     #search by first name , last name or both
     result = search(fname,lname)
+    return result
 
 @user_views.route('/users', methods=['GET'])
 def list_users():
