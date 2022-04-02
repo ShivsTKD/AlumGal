@@ -1,12 +1,13 @@
 import click
 from flask import Flask
 from flask.cli import with_appcontext
+import csv
 
 from App.database import create_db
 from App.main import app, migrate
 from App.controllers import ( create_user, get_all_users_json )
-
-
+from App.database import db
+from App.models import *
 @app.cli.command("init")
 def initialize():
     create_db(app)
@@ -23,3 +24,13 @@ def create_user_command(username, password, email):
 @app.cli.command("get-users")
 def get_users():
     print(get_all_users_json())
+
+@app.cli.command("populate-db")
+def populate(): 
+    with open('/workspace/AlumGal/App/programs.csv') as file:
+        reader = csv.DictReader(file)
+        for row in reader:
+            pro = Programme(name = row['Programme'] ,degree =row['Degree']  ,department =row['Department'] ,faculty =row['Faculty'])
+            print(row)
+            db.session.add(pro)
+            db.session.commit()
