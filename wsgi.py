@@ -7,7 +7,8 @@ from App.database import create_db
 from App.main import app, migrate
 from App.controllers import ( create_user, get_all_users_json )
 from App.database import db
-from App.models import *
+from App.models import Programme
+
 @app.cli.command("init")
 def initialize():
     create_db(app)
@@ -28,9 +29,16 @@ def get_users():
 @app.cli.command("populate-db")
 def populate(): 
     with open('/workspace/AlumGal/App/programs.csv') as file:
-        reader = csv.DictReader(file)
+        fieldnames = ['Programme','Degree','Department','Faculty']
+        reader = csv.DictReader(file,fieldnames=fieldnames)
         for row in reader:
-            pro = Programme(name = row['Programme'] ,degree =row['Degree']  ,department =row['Department'] ,faculty =row['Faculty'])
+            pro = Programme(
+                name = row['Programme'] ,
+                degree =row['Degree']  ,
+                department =row['Department'] ,
+                faculty =row['Faculty']
+            )
             print(row)
             db.session.add(pro)
             db.session.commit()
+        print( 'populated Programme')

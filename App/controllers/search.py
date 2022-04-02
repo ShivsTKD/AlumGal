@@ -19,7 +19,7 @@ def user_search(fname,lname):
         results.append(u.toDict)
     return results
 
-def advsearch(fields):
+def adv_search(fields):
     valid_fields = dict()
     results = []
     profiles = Profile.query.all()
