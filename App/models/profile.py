@@ -12,6 +12,8 @@ class Profile(db.Model):
     linkedin = db.Column('linkedin', db.String(120), nullable=True)
     url = db.Column('pro_pic', db.String(120), nullable=True)
 
+
+    
     def toDict(self):
         return{
                 'p_id' :self.p_id,

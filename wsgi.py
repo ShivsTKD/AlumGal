@@ -38,7 +38,14 @@ def populate():
                 department =row['Department'] ,
                 faculty =row['Faculty']
             )
-            print(row)
             db.session.add(pro)
             db.session.commit()
-        print( 'populated Programme')
+        print( 'populated Programme table')
+
+@app.cli.command("create-profile")
+@click.argument('first_name')
+@click.argument('last_name')
+@click.argument('programme_id')
+@click.argument('grad_year')
+def create_profile():
+    pass # to finish
