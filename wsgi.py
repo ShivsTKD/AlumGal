@@ -28,7 +28,7 @@ def get_users():
 
 @app.cli.command("populate-db")
 def populate(): 
-    with open('/workspace/AlumGal/App/programs.csv') as file:
+    with open('App\programs.csv') as file:
         fieldnames = ['Programme','Degree','Department','Faculty']
         reader = csv.DictReader(file,fieldnames=fieldnames)
         for row in reader:
