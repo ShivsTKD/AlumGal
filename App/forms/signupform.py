@@ -14,7 +14,7 @@ class SignUp(FlaskForm):
     password = PasswordField(validators=[InputRequired(), EqualTo('confirmpwd', message='Passwords must match')])
     confirmpwd  = PasswordField(validators=[InputRequired(), EqualTo('password')])
     programme = SelectField(validators=[InputRequired()])
-    degree = SelectField(validators=[InputRequired()]) 
+    #degree = SelectField(validators=[InputRequired()]) 
     grad_year = IntegerField(validators=[InputRequired()])
     fb = URLField()
     ig = URLField()
@@ -23,5 +23,5 @@ class SignUp(FlaskForm):
 
     def __init(self):
         self.programme.choices = [(p.id, p.name) for p in Programme.query.all()]
-        self.degree.choices = [(p.degree,p.degree) for p in Programme.query.with_entities(degree).distinct()]
+        #self.degree.choices = [(p.degree,p.degree) for p in Programme.query.with_entities(degree).distinct()]
         
