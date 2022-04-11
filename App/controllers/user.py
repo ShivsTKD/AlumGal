@@ -1,6 +1,6 @@
 from App.models import User
 from App.database import db
-
+from flask_sqlalchemy import IntegrityError
 
 def get_all_users():
     return User.query.all()
