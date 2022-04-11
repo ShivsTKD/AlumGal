@@ -3,6 +3,7 @@ from flask_uploads import UploadSet, IMAGES
 from flask_wtf.file import FileField, FileAllowed, FileRequired
 from wtforms import StringField, PasswordField, SubmitField, SelectField, URLField,IntegerField
 from wtforms.validators import InputRequired, EqualTo, Email
+from App.models import Programme
 from App.database import db
 photos = UploadSet('photos', IMAGES)
 
