@@ -1,4 +1,4 @@
-from App.models import User
+from App.models import User,Profile,Programme
 from App.database import db
 
 
@@ -16,6 +16,28 @@ def create_user(username, password, email):
         return True
     except IntegrityError:
         return False
+
+def create_profile(id,profile_data):
+    pid = Programme.query.filter_by(name = profile_data.programme).first()
+    newProfile = Profile(
+    uid = id ,
+    first_name = profile_data.first_name,
+    last_name = profile_data.last_name ,
+    programme_id = pid.id ,
+    graduation_year = profile_data.grad_year,
+    facebook = profile_data.fb,
+    instagram = profile_data.ig,
+    linkedin = profile_data.l_in,
+    #url = 
+    
+    )
+    try:
+        db.session.add(newProfile)
+        db.session.commit()
+        return True
+    except DatabaseError:
+        return False
+
 
 
 def get_all_users_json():

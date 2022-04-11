@@ -6,6 +6,7 @@ from App.models import *
 
 from App.controllers import (
     create_user, 
+    create_profile,
     get_user,
     get_all_users,
     get_all_users_json,
@@ -37,10 +38,19 @@ def post_signup_info():
         #return filename
         if form.validate_on_submit():
             data = request.form
-            done = create_user(username = data['username'], password = data['password'],email = data['email'])
-            if done:
+            user = create_user(username = data['username'], password = data['password'],email = data['email'])
+            pdata= []
+            for k,v in form:
+                if k != 'username' or k != 'password' or k != 'email':
+                    pdata[k] = v
+            if user:
                 flash('Signup successful')
                 redirect('/login')
+                # uid = get_user(data['username'])
+                # profile = create_profile(uid,pdata)
+                # if profile:
+                #     flash('Signup successful')
+                #     redirect('/login')
             else:
                 flash('username or email already in use')
     else:
