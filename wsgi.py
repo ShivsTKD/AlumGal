@@ -42,10 +42,3 @@ def populate():
             db.session.commit()
         print( 'populated Programme table')
 
-@app.cli.command("create-profile")
-@click.argument('first_name')
-@click.argument('last_name')
-@click.argument('programme_id')
-@click.argument('grad_year')
-def create_profile():
-    pass # to finish
