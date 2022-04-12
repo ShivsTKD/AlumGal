@@ -54,18 +54,18 @@ def  userprofile():
                 prog = Programme.query.filter_by(name = row['Programme'], degree = row['Degree']).first()
                 print(prog)
                 print(user)
-                # profile = Profile(
-                #     uid = user.id,
-                #     first_name = row['First Name'],
-                #     last_name = row['Last Name'],
-                #     programme_id = prog.id,
-                #     graduation_year = row['Graduation Year'],
-                #     facebook = row['Facebook'],
-                #     instagram =row['Instagram'],
-                #     linkedin = row['LinkedIn']
-                # )
-                # db.session.add(profile)
-                # db.session.commit()
+                profile = Profile(
+                    uid = user.id,
+                    first_name = row['First Name'],
+                    last_name = row['Last Name'],
+                    programme_id = prog.id,
+                    graduation_year = row['Graduation Year'],
+                    facebook = row['Facebook'],
+                    instagram =row['Instagram'],
+                    linkedin = row['LinkedIn']
+                )
+                db.session.add(profile)
+                db.session.commit()
     print ("users added")
 
 # def propics():
