@@ -44,3 +44,19 @@ def create_profile(email,profile_data):
         return True
     except(Exception):
         return False
+
+def user_profile_create(form):
+    p_data = {}
+    done = create_user(form["username"],form["password"],form["email"])
+    if done:
+        for key, value in form:
+            if key != 'username' or key !=  "password" or key != "email":
+                p_data[f'{key}'] = value
+
+        y = create_profile(form['email'],p_data)
+        if y:
+            return True
+        else:
+            return False
+    else:
+        return False    

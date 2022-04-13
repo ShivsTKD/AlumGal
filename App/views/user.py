@@ -14,7 +14,9 @@ from App.controllers import (
     authenticate,
     user_search,
     adv_search,
-    login_manager
+    login_manager,
+    load_user,
+    user_profile_create
 )
 
 user_views = Blueprint('user_views', __name__, template_folder='../templates')
@@ -37,13 +39,10 @@ def post_signup_info(): ##unfinished but still renders as intended post no fully
         # filename = photos.save(image, name=f"{1}.jpg")
         # return filename
         if form.validate_on_submit():
-            data = request.form
-            done = create_user(username = data['username'], password = data['password'],email = data['email'])
+            done = user_profile_create(form)
             if done:
-                flash('Signup successful')
-                
-            else:
-                flash('username or email already in use')
+                flash("User profile created")
+                redirect('/login')
     else:
         form = SignUp()
         return render_template('signup.html',form=form) 
