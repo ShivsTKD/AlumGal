@@ -29,7 +29,7 @@ def get_users():
 
 
 def programmes(): 
-    with open(r'App\programs.csv') as file:
+    with open(r'App/programs.csv') as file:
         fieldnames = ['Programme','Degree','Department','Faculty']
         reader = csv.DictReader(file,fieldnames=fieldnames)
         for row in reader:
@@ -44,7 +44,7 @@ def programmes():
         print( 'programmes added')
 
 def  userprofile():
-    with open(r'App\user.csv') as file:
+    with open(r'App/user.csv') as file:
         fieldnames = ['Username','First Name','Last Name','Full Name','Email','Password','Programme','Degree','Department','Faculty','Graduation Year','Facebook','Instagram','LinkedIn']
         reader = csv.DictReader(file,fieldnames=fieldnames)
         for row in reader:

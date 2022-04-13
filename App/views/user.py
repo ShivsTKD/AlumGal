@@ -51,9 +51,6 @@ def post_signup_info(): ##unfinished but still renders as intended post no fully
 def account_login():
     form = Login(request.form)
     if request.method == 'POST':
-        # if form.validate_on_submit():
-        #     return 'This is it'
-        # return jsonify(form.data)
         if form.validate_on_submit():
             data = request.form
             user = authenticate(username = data['username'], password = data['password'])
