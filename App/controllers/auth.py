@@ -2,6 +2,7 @@ from flask_login import login_user, logout_user, LoginManager
 from flask_jwt import JWT
 from App.models import User
 
+
 login_manager = LoginManager()
 @login_manager.user_loader
 def load_user(user_id):
