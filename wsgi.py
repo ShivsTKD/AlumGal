@@ -52,8 +52,6 @@ def  userprofile():
             if newUser:
                 user = User.query.filter_by(email = row['Email']).first()
                 prog = Programme.query.filter_by(name = row['Programme'], degree = row['Degree']).first()
-                print(prog)
-                print(user)
                 profile = Profile(
                     uid = user.id,
                     first_name = row['First Name'],

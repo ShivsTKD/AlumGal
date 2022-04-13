@@ -41,6 +41,7 @@ def post_signup_info(): ##unfinished but still renders as intended post no fully
             done = create_user(username = data['username'], password = data['password'],email = data['email'])
             if done:
                 flash('Signup successful')
+                
             else:
                 flash('username or email already in use')
     else:
