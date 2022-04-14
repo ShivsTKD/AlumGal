@@ -50,9 +50,9 @@ def post_signup_info(): ##unfinished but still renders as intended post no fully
 
 @user_views.route('/login', methods = ['GET','POST'])
 def account_login():
-    form = Login(request.form)
+    form = Login()
     if request.method == 'POST':
-        if form.validate_on_submit():
+        if form.validate_on_submit:
             data = request.form
             user = authenticate(username = data['username'], password = data['password'])
             if user:
@@ -62,7 +62,6 @@ def account_login():
             else:
                 flash('Wrong username or password')
     else:
-        form = Login()
         return render_template('login.html',form=form)#change page to whatever template
 
 @user_views.route('/logout', methods=['GET'])
