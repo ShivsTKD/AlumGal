@@ -1,14 +1,74 @@
 input[type="submit"]{
-    color: white;
-  }
-
-#navbar{
-  height: 15vh;
+  color: white;
 }
 
-#navbar>.nav-wrapper .nav-wrapper{
+#navbar{
+  display: flex;
+  height: 15vh;
+  background-color: rgb(235, 197, 8);
+  padding-left: 1em;
+  padding-right: 1em;
+}
+
+#navbar img{
+  height: 100%;
+  cursor: pointer;
+}
+
+#navbar>div{
+  flex-basis: 0;
+  height: 100%;
   display: flex;
   align-items: center;
+  flex-grow: 3;
+}
+
+#navbar li{
+  margin-left: 0.75em;
+}
+
+#navbar *{
+  font-size: 22px;
+  color: black;
+}
+
+.one {
+  width: 1.5em;
+}
+
+.two {
+  width: 1em;
+}
+
+.three {
+  width: 1.2em;
+}
+
+.navi {
+  display: flex;
+  flex-direction: column;
+  cursor: pointer;
+  width: 2em;
+  height: 2em;
+  transition: all 300ms ease;
+  border-radius: 3px;
+  padding-left: 0.25em;
+}
+
+.navi div {
+  height: 0.3em;
+  background-color: black;
+  margin: 0.2em 0;
+  border-radius: 25px;
+  transition: all 300ms ease;
+}
+
+.navi:hover div{
+  width: 1.5em;
+}
+
+.navi:hover {
+  background-color: white;
 }
 
 .carousel-container{
@@ -22,8 +82,33 @@ input[type="submit"]{
 .carousel-container>.card{
   flex-grow: 3;
   margin: 2em;
+  box-shadow: 0 8px 10px 0 black;
+  transition: all 300ms ease-in-out;
+}
+
+.carousel-container>.card:hover{
+  cursor: pointer;
+  box-shadow: 0 0 0 rgb(235, 197, 8);
+  transform: scale(1.05);
+  transition: all 300ms ease-in-out;
 }
 
 .carousel-container img{
   height: 75vmin;
+}
+
+.carousel-container .card-content {
+  background-color: rgb(235, 197, 8);
+}
+
+h5{
+  font-weight: 500;
+}
+
+li:hover{
+  background-color: white;
+}
+
+li a:hover{
+  color: black;
 }

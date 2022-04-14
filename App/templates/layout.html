@@ -14,13 +14,8 @@
     <title>{% block title %}{% endblock %}</title>
   </head>
   <body>
-    <nav id="navbar" class="blue darken-4" style="position: fixed; z-index: 1;">
-      <div class="nav-wrapper">
-        <a href="/" class="brand-logo center">{% block page %}{% endblock %}</a>
-        <div class="nav-wrapper">
-          {% block nav %}{% endblock %}
-        </div>
-      </div>
+    <nav id="navbar">
+      {% block nav %}{% endblock %}
     </nav>
     
     {% with messages = get_flashed_messages() %}

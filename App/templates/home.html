@@ -1,35 +1,39 @@
 {% extends "layout.html" %}
 {% block title %}UCE Alumni Gallery{% endblock %}
-{% block page %}UCE Alumni Gallery{% endblock %}
 {% block nav %}
-<ul id="nav-mobile" class="left">
-    <li><a href="/">Home</a></li>
-    <li><a href="/users">Alumni Members</a></li>
-    <li><a href="/static/users">Users JS</a></li>
-</ul>
-<ul class="right">
-    <li><a href="/logout">Logout</a></li>    
-</ul>
+<div>
+    <div class="navi">
+        <div class="one"></div>
+        <div class="two"></div>
+        <div class="three"></div>
+    </div>
+</div>
+<div style="justify-content: center;">
+    <img class="responsive-img" src="/static/pictures/center logo.png" alt="UCE Logo" onclick="/">
+</div>
+<div>
+    <ul class="right" style="margin-left: auto;">
+        <li><a href="/logout">Logout</a></li>    
+    </ul>
+</div>
+
 {% endblock%}
 
 {{ super() }}
 
 {% block bg %}
-<div class="parallax-container valign-wrapper" style="height: 100vh;">
+<div class="parallax-container valign-wrapper" style="height: 85vh;">
     <div class="row" style="margin-left: 6.5em;">
-    <div class="col s6 card" style="border-radius: 5px; background-color: rgba(255, 255, 255, 0.5); margin-top: 6em;">
-        <div class="container center">
-            <div class="row" style="padding-top: 3em;">
-                <img class="responsive-img circle" src="/static/pictures/Logo.png" alt="UCE Logo">
-            </div>
-            <div class="row">
-                <h3>Alumni Gallery</h3>
-                <div class="divider white"></div>
-                <h3>The University of Computing and Engineering</h3>
+        <div class="col s6 card" style="border-radius: 5px; background-color: rgba(255, 255, 255, 0.6); margin-top: 6em;">
+            <div class="container center">
+                <div class="row">
+                    <h3>Alumni Gallery</h3>
+                    <div class="divider white"></div>
+                    <h3>The University of Computing and Engineering</h3>
+                </div>
             </div>
         </div>
-    </div>
-    <div class="col s6"></div>
+        <div class="col s6"></div>
     </div>
     <div class="parallax">
         <img src="/static/pictures/bg.jpg" alt="Home Background">
@@ -44,14 +48,16 @@
 
 <h3 style="text-align: center;">Welcome our most recently joined Alumni Members</h3>
 <div class="carousel-container">
+    
     {% for user in users %}
         <div class="card">
             <div class="card-image">
                 <img src="/static/Userpics/{{user.first_name}} {{user.last_name}}.jpg" alt="{{user.first_name}} {{user.last_name}}">
             </div>
-            <div class="card-content blue darken-4 white-text">
+            <div class="card-content">
                 <h5 style="text-align: center;">{{user.first_name}} {{user.last_name}}</h5>
             </div>
         </div>
     {% endfor %}
+   
 {% endblock %}

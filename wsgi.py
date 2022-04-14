@@ -45,7 +45,7 @@ def programmes():
 
 def  userprofile():
     with open(r'App/user.csv') as file:
-        fieldnames = ['Username','First Name','Last Name','Full Name','Email','Password','Programme','Degree','Department','Faculty','Graduation Year','Facebook','Instagram','LinkedIn']
+        fieldnames = ['Username','First Name','Last Name','Email','Password','Programme','Degree','Department','Faculty','Graduation Year','Facebook','Instagram','LinkedIn']
         reader = csv.DictReader(file,fieldnames=fieldnames)
         for row in reader:
             newUser = create_user(row['Username'],row['Password'],row['Email'])
