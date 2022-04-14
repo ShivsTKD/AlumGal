@@ -1,3 +1,23 @@
+const aside = document.getElementById('aside');
+const mq = window.matchMedia('(max-width: 600px)');
+
+function asideDisplay(){
+  if (!mq.matches && aside.offsetWidth === 0){
+    aside.style.maxWidth = "15em";
+    aside.style.visibility = "visible";
+    aside.style.transition = "all 500ms ease";
+    aside.style.width = "15em";
+  }
+  else if (mq.matches && aside.offsetWidth === 0){
+    aside.style.maxWidth = "100vw";
+    aside.style.visibility = "visible";
+    aside.style.transition = "all 500ms ease";
+    aside.style.width = "100vw";
+  }
+  else {
+    aside.style.maxWidth = "0";
+  }
+}
 
 async function getUserData(){
     const response = await fetch('/api/users');

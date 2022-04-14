@@ -1,3 +1,11 @@
+html {
+  scroll-behavior: smooth;
+}
+
+* {
+  box-sizing: border-box;
+}
+
 input[type="submit"]{
   color: white;
 }
@@ -32,15 +40,15 @@ input[type="submit"]{
 }
 
 .one {
-  width: 1.5em;
+  width: 2.5em;
 }
 
 .two {
-  width: 1em;
+  width: 1.5em;
 }
 
 .three {
-  width: 1.2em;
+  width: 2em;
 }
 
 .navi {
@@ -66,7 +74,7 @@ input[type="submit"]{
 }
 
 .navi:hover div{
-  width: 1.5em;
+  width: 2em;
 }
 
 #searcharea{
@@ -121,6 +129,63 @@ input:focus::placeholder {
   width: 25em;
   padding: 0.25em;
   transition: all 500ms ease;
+}
+
+#aside {
+  height: 100%;
+  background-color: rgb(30,30,30);
+  position: absolute;
+  top: 0;
+  z-index: 1;
+  max-width: 0;
+  width: 0;
+  padding-top: 3em;
+  overflow-y: auto;
+  overflow-x: hidden;
+  visibility: hidden;
+}
+
+#aside span {
+  cursor: pointer;
+  position: absolute;
+  top: 0.5em;
+  right: 1em;
+  color: white;
+  font-size: 1.5em;
+  z-index: 2;
+  height: 1.5em;
+  width: 1.5em;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  transition: all 500ms ease;
+  border-radius: 5px;
+}
+
+#aside a {
+  display: flex;
+  align-items: center;
+  text-decoration: none;
+  color: white;
+  height: 3em;
+  padding-left: 0.5em;
+  width: 12em;
+  margin: 1.5em auto;
+  transition: all 500ms ease;
+  border-radius: 5px;
+}
+
+#aside a:hover, #aside span:hover {
+  color: black;
+  background-color: white;
+}
+
+#aside img {
+  height: 6em;
+  width: 6em;
+  border-radius: 50%;
+  display: block;
+  margin: max(1em, 20vh) auto 1em auto;
 }
 
 .carousel-container{
