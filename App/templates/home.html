@@ -15,7 +15,6 @@
 {{ super() }}
 
 {% block bg %}
-
 <div class="parallax-container valign-wrapper" style="height: 100vh;">
     <div class="row" style="margin-left: 6.5em;">
     <div class="col s6 card" style="border-radius: 5px; background-color: rgba(255, 255, 255, 0.5); margin-top: 6em;">
@@ -40,9 +39,19 @@
 {% block content %}  
 
 
-<p>Search for Alumni Members by common programmes, departments, faculties, etc.
+<p style="text-align: center;">Search for Alumni Members by common programmes, departments, faculties, etc.
     You can connect with all of your fellow graduates with the click of a button.</p>
 
-<div style="display: block; background-color: aqua; height: 80em;">test</div>
-<div>test2</div>
+<h3 style="text-align: center;">Welcome our most recently joined Alumni Members</h3>
+<div class="carousel-container">
+    {% for user in users %}
+        <div class="card">
+            <div class="card-image">
+                <img src="/static/Userpics/{{user.first_name}} {{user.last_name}}.jpg" alt="{{user.first_name}} {{user.last_name}}">
+            </div>
+            <div class="card-content blue darken-4 white-text">
+                <h5 style="text-align: center;">{{user.first_name}} {{user.last_name}}</h5>
+            </div>
+        </div>
+    {% endfor %}
 {% endblock %}

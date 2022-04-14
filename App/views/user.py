@@ -27,16 +27,17 @@ def no_auth():
 @user_views.route('/')
 @login_required
 def home():
-    return render_template('home.html')
+    users = Profile.query.order_by(Profile.pid)[-3:]
+    return render_template('home.html',users=users)
 
 @user_views.route('/signup', methods=['POST','GET'])
 def post_signup_info(): ##unfinished but still renders as intended post no fully implemented
     if request.method == 'POST':
-        form = SignUp(request.form)
+        form = SignUp()
         # image = request.files['img']
         # filename = photos.save(image, name=f"{1}.jpg")
         # return filename
-        if form.validate_on_submit():
+        if form.validate_on_submit:
             data = request.form
             done = create_user(username = data['username'], password = data['password'],email = data['email'])
             if done:
@@ -45,7 +46,6 @@ def post_signup_info(): ##unfinished but still renders as intended post no fully
             else:
                 flash('username or email already in use')
     else:
-        form = SignUp()
         return render_template('signup.html',form=form) 
 
 @user_views.route('/login', methods = ['GET','POST'])
@@ -69,7 +69,7 @@ def account_login():
 def account_logout():
     logout_user()
     flash('Logout successful')
-    return redirect('/login', methods=['GET'])
+    return redirect('/login')
 
 @user_views.route('/advsearch', methods=['GET'])
 @login_required

@@ -1,3 +1,29 @@
 input[type="submit"]{
     color: white;
   }
+
+#navbar{
+  height: 15vh;
+}
+
+#navbar>.nav-wrapper .nav-wrapper{
+  display: flex;
+  align-items: center;
+}
+
+.carousel-container{
+  display:flex;
+  flex-direction: row;
+  justify-content: center;
+  padding: 4em;
+  padding-top: 0;
+}
+
+.carousel-container>.card{
+  flex-grow: 3;
+  margin: 2em;
+}
+
+.carousel-container img{
+  height: 75vmin;
+}
