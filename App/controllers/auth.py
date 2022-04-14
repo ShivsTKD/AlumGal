@@ -9,18 +9,12 @@ def load_user(user_id):
     return User.query.get(user_id)
 
 def authenticate(username, password):
-    user = User.query.filter_by(email=email).first()
+    user = User.query.filter_by(username=username).first()
     if user and user.check_password(password):
         return user
 
 def identity(payload):
     return User.query.get(payload['identity'])
-
-def login_user(user, remember):
-    return login_user(user, remember=remember)
-
-def logout_user():
-    logout_user()
 
 def setup_jwt(app):
     return JWT(app, authenticate, identity)
