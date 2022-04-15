@@ -1,7 +1,7 @@
 from App.models import User,Profile,Programme
 from App.database import db
 from sqlalchemy.exc import IntegrityError
-
+from App.controllers import storage
 def get_all_users():
     return User.query.all()
 
@@ -37,7 +37,8 @@ def create_profile(email,profile_data):
                 graduation_year = profile_data['grad_year'],
                 facebook = profile_data['fb'],
                 instagram =profile_data['ig'],
-                linkedin = profile_data['l_in']
+                linkedin = profile_data['l_in'],
+                # url = storage.child(f"{}").put(f"{}", user[f'{user.id}'])
         )
         db.session.add(profile)
         db.session.commit()

@@ -8,7 +8,7 @@ from App.main import app, migrate
 from App.controllers import ( create_user, get_all_users_json )
 from App.database import db
 from App.models import Programme,User,Profile
-# from App.controllers import storage
+from App.controllers import storage
 
 @app.cli.command("init")
 def initialize():
@@ -66,28 +66,28 @@ def  userprofile():
                 db.session.commit()
     print ("users added")
 
-# def propics():
-#     images = listdir('Userpics')
-#     names = []
-#     for image in images:
-#         names.append(image.strip('.jpg'))
-#     ids = []
-#     for name in names:
-#         parts = name.split()
-#         user = User.query.filter_by(first_name = parts[0], last_name = parts[1])
-#         ids.append(user.id)
-#     for id in ids:
-#         profile = Profile.query.filter_by(uid = id)
-#         profile.url = storage.child(f'Userpics\{names[id]}.jpg').add(f'{names[id]}.jpg',user[f'{id}'])
-#         db.session.commit()
-#     print("images added")
+def propics():
+    images = listdir('Userpics')
+    names = []
+    for image in images:
+        names.append(image.strip('.jpg'))
+    ids = []
+    for name in names:
+        parts = name.split()
+        user = User.query.filter_by(first_name = parts[0], last_name = parts[1])
+        ids.append(user.id)
+    for id in ids:
+        profile = Profile.query.filter_by(uid = id)
+        profile.url = storage.child(f'Userpics\{names[id]}.jpg').add(f'{names[id]}.jpg',user[f'{id}'])
+        db.session.commit()
+    print("images added")
 
 @app.cli.command("populate-db")
 def populate():
     print("populating...")
     programmes()
     userprofile()
-    #propics()
+    propics()
     print("populating completed")
 
 
