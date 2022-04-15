@@ -28,16 +28,16 @@ def get_all_users_json():
 def create_profile(email,profile_data):
     try:
         user = User.query.filter_by(email = email).first()
-        prog = Programme.query.filter_by(name = profile_data['Programme'], degree = profile_data['Degree']).first()
+        prog = Programme.query.filter_by(name = profile_data['programme'], degree = profile_data['degree']).first()
         profile = Profile(
                 uid = user.id,
-                first_name = profile_data['First Name'],
-                last_name = profile_data['Last Name'],
+                first_name = profile_data['first_name'],
+                last_name = profile_data['last_name'],
                 programme_id = prog.id,
-                graduation_year = profile_data['Graduation Year'],
-                facebook = profile_data['Facebook'],
-                instagram =profile_data['Instagram'],
-                linkedin = profile_data['LinkedIn']
+                graduation_year = profile_data['grad_year'],
+                facebook = profile_data['fb'],
+                instagram =profile_data['ig'],
+                linkedin = profile_data['l_in']
         )
         db.session.add(profile)
         db.session.commit()
@@ -46,14 +46,11 @@ def create_profile(email,profile_data):
         return False
 
 def user_profile_create(form):
-    p_data = {}
     done = create_user(form["username"],form["password"],form["email"])
+    
     if done:
-        for key, value in form:
-            if key != 'username' or key !=  "password" or key != "email":
-                p_data[f'{key}'] = value
-
-        y = create_profile(form['email'],p_data)
+        y = create_profile(form['email'],form)
+        
         if y:
             return True
         else:

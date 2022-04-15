@@ -89,3 +89,11 @@ def populate():
     userprofile()
     #propics()
     print("populating completed")
+
+
+@app.cli.command("delete")
+@click.argument("email")
+def delete(email):
+    User.query.filter_by(email = email).delete()
+    db.session.commit()
+    print ("deleted user")
