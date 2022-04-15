@@ -1,4 +1,4 @@
-SQLALCHEMY_DATABASE_URI = "sqlite:///temp-database.db"
-SECRET_KEY = "secret key"
+SQLALCHEMY_DATABASE_URI = "postgresql://lpcbhowpynrjix:3b18c3a619eb6cb658ad237597f2a86067b65bb0b0abeb525734735ed3e77ae0@ec2-52-203-118-49.compute-1.amazonaws.com:5432/de2vautojiv55f"
+SECRET_KEY = "3b18c3a619eb6cb658ad237597f2a86067b65bb0b0abeb525734735ed3e77ae0"
 JWT_EXPIRATION_DELTA = 7
 ENV = "DEVELOPMENT"

@@ -6,7 +6,7 @@ def get_all_users():
     return User.query.all()
 
 def get_user(username):
-    return User.query.get(username)
+    return User.query.filter_by(username=username).first()
 
 def create_user(username, password, email):
     newuser = User(username=username, password=password, email=email)
@@ -15,6 +15,7 @@ def create_user(username, password, email):
         db.session.commit()
         return True
     except IntegrityError:
+        print("test")
         return False
 
 

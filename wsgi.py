@@ -5,10 +5,10 @@ import csv
 from os import listdir
 from App.database import create_db
 from App.main import app, migrate
-from App.controllers import ( create_user, get_all_users_json )
+from App.controllers import ( create_user, get_all_users_json, get_user )
 from App.database import db
 from App.models import Programme,User,Profile
-# from App.controllers import storage
+from App.controllers import storage
 
 @app.cli.command("init")
 def initialize():
@@ -22,6 +22,24 @@ def initialize():
 def create_user_command(username, password, email):
     create_user(username, password, email)
     print(f'{username} created!')
+
+@app.cli.command("delete")
+@click.argument("email")
+def delete(email):
+    User.query.filter_by(email = email).delete()
+    db.session.commit()
+    print ("deleted user")
+
+@app.cli.command("drop")
+def delete_tables():
+    db.drop_all()
+    db.session.commit()
+    print ("dropped tables")
+
+@app.cli.command("get-user")
+@click.argument("username")
+def get_a_user(username):
+    print(get_user(username))
 
 @app.cli.command("get-users")
 def get_users():
@@ -66,26 +84,27 @@ def  userprofile():
                 db.session.commit()
     print ("users added")
 
-# def propics():
-#     images = listdir('Userpics')
-#     names = []
-#     for image in images:
-#         names.append(image.strip('.jpg'))
-#     ids = []
-#     for name in names:
-#         parts = name.split()
-#         user = User.query.filter_by(first_name = parts[0], last_name = parts[1])
-#         ids.append(user.id)
-#     for id in ids:
-#         profile = Profile.query.filter_by(uid = id)
-#         profile.url = storage.child(f'Userpics\{names[id]}.jpg').add(f'{names[id]}.jpg',user[f'{id}'])
-#         db.session.commit()
-#     print("images added")
+def propics():
+    images = listdir('Userpics')
+    names = []
+    for image in images:
+        names.append(image.replace('.jpg',''))
+    ids = []
+    for name in names:
+        parts = name.split()
+        user = Profile.query.filter_by(first_name = parts[0], last_name = parts[1]).first()
+        # ids.append(user.uid)
+        print(user.uid, parts[0], parts[1])
+    # for id in ids:
+    #     profile = Profile.query.filter_by(uid = id)
+    #     profile.url = storage.child(f'Userpics\{names[id]}.jpg').add(f'{names[id]}.jpg',user[f'{id}'])
+    #     db.session.commit()
+    print("images added")
 
 @app.cli.command("populate-db")
 def populate():
     print("populating...")
-    programmes()
-    userprofile()
-    #propics()
+    # programmes()
+    # userprofile()
+    propics()
     print("populating completed")
