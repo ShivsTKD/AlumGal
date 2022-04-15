@@ -5,8 +5,8 @@ from sqlalchemy.exc import IntegrityError
 def get_all_users():
     return User.query.all()
 
-def get_user(username):
-    return User.query.filter_by(username=username).first()
+def get_user(first,last):
+    return Profile.query.filter_by(first_name=first,last_name=last).first()
 
 def create_user(username, password, email):
     newuser = User(username=username, password=password, email=email)

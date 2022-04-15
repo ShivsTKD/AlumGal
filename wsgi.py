@@ -37,9 +37,10 @@ def delete_tables():
     print ("dropped tables")
 
 @app.cli.command("get-user")
-@click.argument("username")
-def get_a_user(username):
-    print(get_user(username))
+@click.argument("fi")
+@click.argument("ls")
+def get_a_user(fi,ls):
+    print(get_user(fi,ls).first_name)
 
 @app.cli.command("get-users")
 def get_users():
@@ -87,18 +88,27 @@ def  userprofile():
 def propics():
     images = listdir('Userpics')
     names = []
+    m = False
+    print(len(images))
     for image in images:
         names.append(image.replace('.jpg',''))
     ids = []
     for name in names:
         parts = name.split()
-        user = Profile.query.filter_by(first_name = parts[0], last_name = parts[1]).first()
-        # ids.append(user.uid)
-        print(user.uid, parts[0], parts[1])
-    # for id in ids:
-    #     profile = Profile.query.filter_by(uid = id)
-    #     profile.url = storage.child(f'Userpics\{names[id]}.jpg').add(f'{names[id]}.jpg',user[f'{id}'])
-    #     db.session.commit()
+        puser = Profile.query.filter_by(first_name = parts[0], last_name = parts[1]).first()
+    
+        ids.append(puser.uid)
+    for id in range(78, len(ids)):
+        # print ("id: " , id)
+        profile = Profile.query.filter_by(uid = id).first()
+        # print(id,names[profile.uid - 1])
+
+        #print(profile.uid)
+        token = storage.child(f'Userpics\{profile.uid}.jpg').put(f'Userpics\{names[(id)]}.jpg')
+        purl = storage.child(f'Userpics\{id}.jpg').get_url(token['downloadTokens'])
+        profile.pro_pic = f"{purl}"
+        db.session.commit()
+        
     print("images added")
 
 @app.cli.command("populate-db")
