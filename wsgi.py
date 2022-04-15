@@ -88,7 +88,6 @@ def  userprofile():
 def propics():
     images = listdir('Userpics')
     names = []
-    m = False
     print(len(images))
     for image in images:
         names.append(image.replace('.jpg',''))
@@ -96,15 +95,10 @@ def propics():
     for name in names:
         parts = name.split()
         puser = Profile.query.filter_by(first_name = parts[0], last_name = parts[1]).first()
-    
         ids.append(puser.uid)
-    for id in range(78, len(ids)):
-        # print ("id: " , id)
-        profile = Profile.query.filter_by(uid = id).first()
-        # print(id,names[profile.uid - 1])
-
-        #print(profile.uid)
-        token = storage.child(f'Userpics\{profile.uid}.jpg').put(f'Userpics\{names[(id)]}.jpg')
+    for id in range(0, len(ids)):
+        profile = Profile.query.filter_by(uid = ids[id]).first()
+        token = storage.child(f'Userpics\{profile.uid}.jpg').put(f'Userpics\{names[ids[id]]}.jpg')
         purl = storage.child(f'Userpics\{id}.jpg').get_url(token['downloadTokens'])
         profile.pro_pic = f"{purl}"
         db.session.commit()
