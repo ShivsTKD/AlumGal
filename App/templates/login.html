@@ -2,34 +2,37 @@
 {% block title %}Login{% endblock %}
 {% block page %}Login{% endblock %}
 {% block nav %}
-<ul class="right" id="nav-mobile">
-    <li><a href="/signup">Signup</a></li>
-</ul>
+<div style="justify-content: center;">
+    <a href="/"><img class="responsive-img" src="/static/pictures/center logo.png" alt="UCE Logo"></a>
+</div>
 {% endblock %}
 
 {{ super() }}
 
 {% block content %}
-<main class="container" style="padding-top: 4em;">
-    <form class="card col s12" method="post" action="/login" style="padding: 1em;">
-        <div class="row">
-            <div class="input-field col s12">
-                {{ form.username(class="validate", autofocus=true) }}
-                <label>Username</label> 
+<main class="container center">
+    <h4>Member Login</h4>
+    <div class="container">
+        <form class="card col s12" method="post" action="/login" style="padding: 1em;">
+            <div class="row">
+                <div class="input-field col s12">
+                    {{ form.username(class="validate", autofocus=true) }}
+                    <label>Username</label> 
+                </div>
             </div>
-        </div>
-        <div class="row">
-            <div class="input-field col s12">
-                {{ form.password(class="validate") }}
-                <label>Password</label> 
+            <div class="row">
+                <div class="input-field col s12">
+                    {{ form.password(class="validate") }}
+                    <label>Password</label> 
+                </div>
             </div>
-        </div>
-        
-        <button class="btn waves-effect waves-light green">
-            Submit
-            <i class="material-icons">send</i>
-        </button>
-
-    </form>
+            
+            <button class="btn waves-effect waves-light" style="background-color: rgb(245, 182, 9); display: flex; align-items: center;">
+                Submit
+                <i class="material-icons" style="margin-left: 0.5em;">send</i>
+            </button>
+            <span>If you don't have an account, click here to <a href="/signup">Sign Up</a></span>
+        </form>
+    </div>
 </main>
 {% endblock %}

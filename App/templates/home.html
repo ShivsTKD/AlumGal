@@ -1,5 +1,23 @@
 {% extends "layout.html" %}
 {% block title %}UCE Alumni Gallery{% endblock %}
+{% block nav %}
+    <div onclick="asideDisplay()">
+        <div class="navi" onclick="asideDisplay()">
+            <div class="one"></div>
+            <div class="two"></div>
+            <div class="three"></div>
+        </div>
+    </div>
+    <div style="justify-content: center;">
+        <a href="/"><img class="responsive-img" src="/static/pictures/center logo.png" alt="UCE Logo"></a>
+    </div>
+    <div>
+        <form id="searcharea" method="redirect();return false;" action="" >
+            <input id="searchbar" type="search" placeholder="Search for an Alumni Member">
+            <button type="submit" style="background: none; border: none;"><i class="fa fa-search srch" onclick="form.submit"></i></button>
+        </form>
+    </div>
+{% endblock %}
 
 {{ super() }}
 
@@ -24,15 +42,6 @@
 {% endblock %}
 {% block content %}  
 
-<aside id="aside">
-    <span onclick="asideDisplay()">✕</span>
-    <a href="#recentAlums">Most Recent Alumni</a>
-    <a href="">About Us</a>
-    <a href="">Leave A Comment</a>
-    <a href="">Contact Us</a>
-    <img src="/static/pictures/Head.png" alt="HeadLogo">
-</aside>
-
 <p style="text-align: center;">Search for Alumni Members by common programmes, departments, faculties, etc.
     You can connect with all of your fellow graduates with the click of a button.</p>
 
@@ -50,4 +59,11 @@
         </div>
     {% endfor %}
    
+{% endblock %}
+{% block aftercontent %}
+<div class="parallax-container valign-wrapper" style="height: 90vh;">
+    <div class="parallax">
+        <img src="/static/pictures/2ndbg.jpg" alt="About Us BG">
+    </div>
+</div>
 {% endblock %}

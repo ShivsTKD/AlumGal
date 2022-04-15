@@ -32,8 +32,8 @@ def home():
 
 @user_views.route('/signup', methods=['POST','GET'])
 def post_signup_info(): ##unfinished but still renders as intended post no fully implemented
+    form = SignUp()
     if request.method == 'POST':
-        form = SignUp()
         # image = request.files['img']
         # filename = photos.save(image, name=f"{1}.jpg")
         # return filename

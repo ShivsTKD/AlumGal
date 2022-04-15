@@ -3,10 +3,10 @@ const mq = window.matchMedia('(max-width: 600px)');
 
 function asideDisplay(){
   if (!mq.matches && aside.offsetWidth === 0){
-    aside.style.maxWidth = "15em";
+    aside.style.maxWidth = "20em";
     aside.style.visibility = "visible";
     aside.style.transition = "all 500ms ease";
-    aside.style.width = "15em";
+    aside.style.width = "20em";
   }
   else if (mq.matches && aside.offsetWidth === 0){
     aside.style.maxWidth = "100vw";
@@ -17,6 +17,11 @@ function asideDisplay(){
   else {
     aside.style.maxWidth = "0";
   }
+}
+
+function removeFlash(){
+    const fm = document.getElementById("flashedmessage");
+    fm.style.display = "none";
 }
 
 async function getUserData(){
