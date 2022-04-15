@@ -9,8 +9,8 @@ from App.controllers import (
     get_user,
     get_all_users,
     get_all_users_json,
-    login_user,
-    logout_user,
+    loginuser,
+    logoutuser,
     authenticate,
     user_search,
     adv_search,
@@ -48,21 +48,20 @@ def post_signup_info(): ##unfinished but still renders as intended post no fully
         return render_template('signup.html',form=form) 
 
 @user_views.route('/login', methods = ['GET','POST'])
-def account_login():
-    form = Login(request.form)
+def account_login(): 
     if request.method == 'POST':
-        # if form.validate_on_submit():
-        #     return 'This is it'
-        # return jsonify(form.data)
-        if form.validate_on_submit():
-            data = request.form
-            user = authenticate(username = data['username'], password = data['password'])
-            if user:
-                login_user(user, remember = True)
-                flash('Login successful')
-                return redirect('/')
-            else:
-                flash('Wrong username or password')
+
+        form = Login(request.form)
+        print(form.username.data)
+        print('post')
+        user = authenticate(username = form.username.data, password = form.password.data)
+        if user:
+            flash('Login successful')
+            loginuser(user,remember = True)
+            
+            return redirect('/')
+        else:
+            flash('Wrong username or password')
     else:
         form = Login()
         return render_template('login.html',form=form)#change page to whatever template
@@ -70,9 +69,9 @@ def account_login():
 @user_views.route('/logout', methods=['GET'])
 @login_required
 def account_logout():
-    logout_user()
+    logoutuser()
     flash('Logout successful')
-    return redirect('/login', methods=['GET'])
+    return redirect('/login')
 
 @user_views.route('/advsearch', methods=['GET'])
 @login_required
