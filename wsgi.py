@@ -96,23 +96,25 @@ def propics():
     for name in names:
         parts = name.split()
         puser = Profile.query.filter_by(first_name = parts[0], last_name = parts[1]).first()
-        ids.append(puser.uid)
-        print(name)
-    # for id in range(0, len(ids)):
-    #     profile = Profile.query.filter_by(uid = ids[id]).first()
-    #     print(f"{names[ids[id]]}", id)
-    #     token = storage.child(f'Userpics/{profile.uid}.jpg').put(f'Userpics/{names[ids[id]]}.jpg')
-    #     purl = storage.child(f'Userpics/{id}.jpg').get_url(token['downloadTokens'])
-    #     profile.pro_pic = f"{purl}"
-    #     db.session.commit()
-        
+        token = storage.child(f'{puser.uid}.jpg').put(f'Userpics/{name}.jpg')
+        purl = storage.child(f'{puser.uid}.jpg').get_url(token['downloadTokens'])
+        puser.pro_pic = f"{purl}"
+        db.session.merge(puser) #Need to figure this prt out
+        db.session.flush()
+        db.session.commit()
     print("images added")
+
+@app.cli.command("test")
+@click.argument("ln")
+def get_usr_url(ln):
+    user = Profile.query.filter_by(last_name=ln).first()
+
 
 @app.cli.command("populate-db")
 def populate():
     print("populating...")
-    # programmes()
-    # userprofile()
+    programmes()
+    userprofile()
     propics()
     print("populating completed")
 

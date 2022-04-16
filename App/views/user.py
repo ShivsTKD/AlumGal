@@ -28,7 +28,8 @@ def no_auth():
 @user_views.route('/')
 @login_required
 def file():
-    return render_template('home.html')
+    users = Profile.query.all()[-3:]
+    return render_template('home.html',users=users)
 
 
 
