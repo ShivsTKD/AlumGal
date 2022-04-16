@@ -16,5 +16,11 @@ def authenticate(username, password):
 def identity(payload):
     return User.query.get(payload['identity'])
 
+def loginuser(user, remember):
+    return login_user(user, remember=remember)
+
+def logoutuser():
+    logout_user()
+
 def setup_jwt(app):
     return JWT(app, authenticate, identity)
