@@ -76,14 +76,16 @@ def account_logout():
     flash('Logout successful')
     return redirect('/login')
 
-@user_views.route('/advsearch', methods=['GET'])
-@login_required
-def advsearch():
-    
-    form = AdvSearch()
-    data = request.form.to_dict()
-    results = adv_search(data)
-    return results
+# @user_views.route('/advsearch', methods=['GET','POST'])
+# @login_required
+# def advsearch():
+#     form = AdvSearch()
+#     if request.method == 'POST':
+#         data = request.form.data
+#         results = adv_search(data)
+#         return results
+#     else:
+#         # return render_template('',form = form)
 
 
 @user_views.route('/search/<fname>+<lname>', methods=['GET'])

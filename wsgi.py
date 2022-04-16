@@ -107,3 +107,7 @@ def populate():
     userprofile()
     propics()
     print("populating completed")
+
+@app.cli.command("rollback")
+def rollback():
+    db.session.rollback()
