@@ -3,6 +3,7 @@ from flask import Flask
 from flask.cli import with_appcontext
 import csv
 from os import listdir
+from os.path import splitext
 from App.database import create_db
 from App.main import app, migrate
 from App.controllers import ( create_user, get_all_users_json, get_user )
@@ -36,6 +37,10 @@ def delete_tables():
     db.session.commit()
     print ("dropped tables")
 
+@app.cli.command("get-user")
+@click.argument("username")
+def get_a_user(username):
+    print(get_user(username).toDict())
 
 @app.cli.command("get-users")
 def get_users():
@@ -85,26 +90,29 @@ def propics():
     names = []
     print(len(images))
     for image in images:
-        names.append(image.replace('.jpg',''))
+        imgName = splitext(image)
+        names.append(imgName[0])
     ids = []
     for name in names:
         parts = name.split()
         puser = Profile.query.filter_by(first_name = parts[0], last_name = parts[1]).first()
         ids.append(puser.uid)
-    for id in range(0, len(ids)):
-        profile = Profile.query.filter_by(uid = ids[id]).first()
-        token = storage.child(f'Userpics\{profile.uid}.jpg').put(f'Userpics\{names[ids[id]]}.jpg')
-        purl = storage.child(f'Userpics\{id}.jpg').get_url(token['downloadTokens'])
-        profile.pro_pic = f"{purl}"
-        db.session.commit()
+        print(name)
+    # for id in range(0, len(ids)):
+    #     profile = Profile.query.filter_by(uid = ids[id]).first()
+    #     print(f"{names[ids[id]]}", id)
+    #     token = storage.child(f'Userpics/{profile.uid}.jpg').put(f'Userpics/{names[ids[id]]}.jpg')
+    #     purl = storage.child(f'Userpics/{id}.jpg').get_url(token['downloadTokens'])
+    #     profile.pro_pic = f"{purl}"
+    #     db.session.commit()
         
     print("images added")
 
 @app.cli.command("populate-db")
 def populate():
     print("populating...")
-    programmes()
-    userprofile()
+    # programmes()
+    # userprofile()
     propics()
     print("populating completed")
 
