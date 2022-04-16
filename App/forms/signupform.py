@@ -22,7 +22,8 @@ class SignUp(FlaskForm):
     l_in = URLField()
     img = FileField(validators=[FileRequired(), FileAllowed(photos, message='Images Only!')])
 
-    def __init(self):
-        self.programme.choices = [(p.id, p.name) for p in Programme.query.all()]
-        self.degree.choices = [(p.degree,p.degree) for p in Programme.query.with_entities("degree").distinct()]
+    # def __init__(self):
+    #     self.programme.choices = [(p.name, p.name) for p in Programme.query.all()]
+    #     self.degree.choices = [(p.degree,p.degree) for p in Programme.query.with_entities(Programme.degree).distinct()]
+        
         

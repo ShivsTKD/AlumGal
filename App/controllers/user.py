@@ -48,6 +48,7 @@ def create_profile(email,profile_data):
 
 def user_profile_create(form):
     done = create_user(form["username"],form["password"],form["email"])
+    
     if done:
         y = create_profile(form['email'],form)
         

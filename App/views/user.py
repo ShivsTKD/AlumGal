@@ -32,13 +32,16 @@ def home():
     return render_template('home.html')
 
 @user_views.route('/signup', methods=['POST','GET'])
-def post_signup_info(): 
+def post_signup_info(): ##unfinished but still renders as intended post no fully implemented
     form = SignUp()
     form.programme.choices = [(p.name, p.name) for p in Programme.query.all()]
     form.degree.choices = [(p.degree,p.degree) for p in Programme.query.with_entities(Programme.degree).distinct()]
         
     if request.method == 'POST':
         fdata = SignUp(request.form)
+        # image = request.files['img']
+        # filename = photos.save(image, name=f"{1}.jpg")
+        # return filename
         done = user_profile_create(fdata.data) 
         print (done)
         if done:
@@ -64,7 +67,7 @@ def account_login():
             flash('Wrong username or password')
     else:
         form = Login()
-        return render_template('login.html',form=form)
+        return render_template('login.html',form=form)#change page to whatever template
 
 @user_views.route('/logout', methods=['GET'])
 @login_required
