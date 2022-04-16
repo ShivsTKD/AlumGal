@@ -36,6 +36,10 @@ def delete_tables():
     db.session.commit()
     print ("dropped tables")
 
+@app.cli.command("get-user")
+@click.argument("username")
+def get_a_user(username):
+    print(get_user(username).toDict())
 
 @app.cli.command("get-users")
 def get_users():

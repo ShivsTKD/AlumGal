@@ -1,14 +1,13 @@
 from App.models import User,Profile,Programme
 from App.database import db
 from sqlalchemy.exc import IntegrityError
-from App.controllers import firebaseconfig
-import os
+#from App.controllers import storage
 
 def get_all_users():
     return User.query.all()
 
 def get_user(username):
-    return User.query.get(username)
+    return User.query.filter_by(username=username).first()
 
 def create_user(username, password, email):
     newuser = User(username=username, password=password, email=email)
