@@ -3,7 +3,7 @@ from flask_jwt import jwt_required
 from flask_login import login_required
 from App.forms import *
 from App.models import *
-
+from werkzeug.utils import secure_filename
 from App.controllers import (
     create_user, 
     get_user,
@@ -16,7 +16,8 @@ from App.controllers import (
     adv_search,
     login_manager,
     load_user,
-    user_profile_create
+    user_profile_create,
+    # save_file
 )
 
 user_views = Blueprint('user_views', __name__, template_folder='../templates')
@@ -28,8 +29,10 @@ def no_auth():
 
 @user_views.route('/')
 @login_required
-def home():
+def file():
     return render_template('home.html')
+
+
 
 @user_views.route('/signup', methods=['POST','GET'])
 def post_signup_info(): ##unfinished but still renders as intended post no fully implemented
@@ -39,17 +42,18 @@ def post_signup_info(): ##unfinished but still renders as intended post no fully
         
     if request.method == 'POST':
         fdata = SignUp(request.form)
-        # image = request.files['img']
-        # filename = photos.save(image, name=f"{1}.jpg")
-        # return filename
-        done = user_profile_create(fdata.data) 
-        print (done)
-        if done:
-            flash("User profile created")
-            return redirect('/login')
-        else:
-            flash("User profile not created")
-            return redirect('/signup')
+        image = request.files['img']
+        filename = secure_filename(image.filename)
+        image.save(f'images\{filename}')
+        return (filename)
+        # done = user_profile_create(fdata.data,filename) 
+        # print (done)
+        # if done:
+        #     flash("User profile created")
+        #     return redirect('/login')
+        # else:
+        #     flash("User profile not created")
+        #     return redirect('/signup')
     else:
         
         return render_template('signup.html',form=form) 

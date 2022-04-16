@@ -1,0 +1,50 @@
+{% extends "layout.html" %}
+{% block title %}Signup{% endblock %}
+{% block page %}Signup{% endblock %}
+
+{% block nav %}
+<ul class="right" id="nav-mobile">
+    <li><a href="/login">Login</a></li>
+</ul>
+{% endblock %}
+
+{{ super() }}
+
+{% block content %}
+<main class="container" style="padding-top: 4em;">
+    <form id="signupform" class="card" method="post" action="/signup" enctype="multipart/form-data" style="padding: 1em;">
+        <div class="row">
+            <div class="col s12">
+                <ul class="tabs tabs-fixed-width" style="margin-bottom: 1em;">
+                    <li class="tab col s3"><a href="#personal-info">Personal</a></li>
+                    <li class="tab col s3"><a href="#education-info" onclick="E_Tab()">Education</a></li>
+                    <li class="tab col s3"><a href="#social-info" onclick="S_Tab()">Social</a></li>
+                </ul>
+
+                        <div class="file-field input-field">
+                            <div class="btn green">
+                                <i class="material-icons">camera_alt</i>
+                                {{ form.img(class="validate", accept="image/*", oninvalid="this.setCustomValidity('Please Upload An Image')", oninput="this.setCustomValidity('')") }}
+                            </div>
+                            <div class="file-path-wrapper">
+                                <input type="text" class="file-path validate" placeholder="Upload Image Here">
+                            </div>
+                        </div>
+                    </div>
+                    <a class="waves-effect waves-light btn green" href="#education-info" onclick="E_Tab()">Continue</a>
+                </div>
+
+
+
+                    <button class="btn waves-effect waves-light green" type="submit" >
+                        Submit
+                        <i class="material-icons right">send</i>
+                    </button>
+                    
+                </div>
+            </div>
+        </div>
+    </form>
+</main>
+
+{% endblock %}

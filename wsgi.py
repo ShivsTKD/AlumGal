@@ -36,11 +36,6 @@ def delete_tables():
     db.session.commit()
     print ("dropped tables")
 
-@app.cli.command("get-user")
-@click.argument("fi")
-@click.argument("ls")
-def get_a_user(fi,ls):
-    print(get_user(fi,ls).first_name)
 
 @app.cli.command("get-users")
 def get_users():
@@ -108,7 +103,7 @@ def propics():
 @app.cli.command("populate-db")
 def populate():
     print("populating...")
-    # programmes()
-    # userprofile()
+    programmes()
+    userprofile()
     propics()
     print("populating completed")

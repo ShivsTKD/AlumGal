@@ -1,7 +1,9 @@
 from App.models import User,Profile,Programme
 from App.database import db
 from sqlalchemy.exc import IntegrityError
-from App.controllers import storage
+from App.controllers import firebaseconfig
+import os
+
 def get_all_users():
     return User.query.all()
 
@@ -25,10 +27,12 @@ def get_all_users_json():
     users = [user.toDict() for user in users]
     return users
 
-def create_profile(email,profile_data):
+def create_profile(email,profile_data,filename):
     try:
-        user = User.query.filter_by(email = email).first()
         prog = Programme.query.filter_by(name = profile_data['programme'], degree = profile_data['degree']).first()
+        user = User.query.filter_by(email = email).first()
+        token = firebaseconfig.storage.child(f'Userpics\{user.id}').put(f"images\{filename}")
+        purl = firebaseconfig.storage.child(f'Userpics\{user.id}').get_url(token['downloadTokens'])
         profile = Profile(
                 uid = user.id,
                 first_name = profile_data['first_name'],
@@ -38,19 +42,25 @@ def create_profile(email,profile_data):
                 facebook = profile_data['fb'],
                 instagram =profile_data['ig'],
                 linkedin = profile_data['l_in'],
-                # url = storage.child(f"{}").put(f"{}", user[f'{user.id}'])
+                url = f"{purl}"
+                
         )
         db.session.add(profile)
         db.session.commit()
+        os.remove(f"images\{filename}")
         return True
     except(Exception):
+        User.query.filter_by(email = email).delete()
+        db.session.commit()
+        os.remove(f"images\{filename}")
+        print ("deleted user")
         return False
 
-def user_profile_create(form):
+def user_profile_create(form,filename):
     done = create_user(form["username"],form["password"],form["email"])
     
     if done:
-        y = create_profile(form['email'],form)
+        y = create_profile(form['email'],form,filename)
         
         if y:
             return True

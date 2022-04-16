@@ -22,13 +22,14 @@ views = [
     user_views,
     api_views
 ]
-
+UPLOAD_FOLDER = ".\images"
 def add_views(app, views):
     for view in views:
         app.register_blueprint(view)
 
 def loadConfig(app, config):
     app.config['ENV'] = os.environ.get('ENV', 'DEVELOPMENT')
+    app.config['UPLOAD_FOLDER'] = UPLOAD_FOLDER
     if app.config['ENV'] == "DEVELOPMENT":
         app.config.from_object('App.config')
     else:
@@ -58,4 +59,5 @@ def create_app(config={}):
     return app
 
 app = create_app()
+
 migrate = get_migrate(app)
