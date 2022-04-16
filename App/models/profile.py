@@ -10,7 +10,7 @@ class Profile(db.Model):
     facebook = db.Column('facebook', db.String(120), nullable=True)
     instagram = db.Column('instagram', db.String(120), nullable=True)
     linkedin = db.Column('linkedin', db.String(120), nullable=True)
-    url = db.Column('pro_pic', db.String(120), nullable=True)
+    url = db.Column('pro_pic', db.String(350), nullable=True)
 
 
     
