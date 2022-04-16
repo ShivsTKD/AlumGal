@@ -34,9 +34,6 @@ def home():
 def post_signup_info(): ##unfinished but still renders as intended post no fully implemented
     form = SignUp()
     if request.method == 'POST':
-        # image = request.files['img']
-        # filename = photos.save(image, name=f"{1}.jpg")
-        # return filename
         if form.validate_on_submit:
             data = request.form
             done = create_user(username = data['username'], password = data['password'],email = data['email'])
