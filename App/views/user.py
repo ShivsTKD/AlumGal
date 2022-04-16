@@ -15,9 +15,7 @@ from App.controllers import (
     user_search,
     adv_search,
     login_manager,
-    load_user,
     user_profile_create,
-    # save_file
 )
 
 user_views = Blueprint('user_views', __name__, template_folder='../templates')
@@ -39,21 +37,19 @@ def post_signup_info(): ##unfinished but still renders as intended post no fully
     form = SignUp()
     form.programme.choices = [(p.name, p.name) for p in Programme.query.all()]
     form.degree.choices = [(p.degree,p.degree) for p in Programme.query.with_entities(Programme.degree).distinct()]
-        
     if request.method == 'POST':
         fdata = SignUp(request.form)
         image = request.files['img']
         filename = secure_filename(image.filename)
         image.save(f'images\{filename}')
-        return (filename)
-        # done = user_profile_create(fdata.data,filename) 
-        # print (done)
-        # if done:
-        #     flash("User profile created")
-        #     return redirect('/login')
-        # else:
-        #     flash("User profile not created")
-        #     return redirect('/signup')
+        done = user_profile_create(fdata.data,filename) 
+        print (done)
+        if done:
+            flash("User profile created")
+            return redirect('/login')
+        else:
+            flash("User profile not created")
+            return redirect('/signup')
     else:
         
         return render_template('signup.html',form=form) 
