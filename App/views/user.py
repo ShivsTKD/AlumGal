@@ -9,12 +9,14 @@ from App.controllers import (
     get_user,
     get_all_users,
     get_all_users_json,
-    login_user,
-    logout_user,
+    loginuser,
+    logoutuser,
     authenticate,
     user_search,
     adv_search,
-    login_manager
+    login_manager,
+    load_user,
+    user_profile_create
 )
 
 user_views = Blueprint('user_views', __name__, template_folder='../templates')
@@ -27,44 +29,47 @@ def no_auth():
 @user_views.route('/')
 @login_required
 def home():
-    users = Profile.query.order_by(Profile.pid)[-3:]
-    return render_template('home.html',users=users)
+    return render_template('home.html')
 
 @user_views.route('/signup', methods=['POST','GET'])
-def post_signup_info(): ##unfinished but still renders as intended post no fully implemented
+def post_signup_info(): 
     form = SignUp()
+    form.programme.choices = [(p.name, p.name) for p in Programme.query.all()]
+    form.degree.choices = [(p.degree,p.degree) for p in Programme.query.with_entities(Programme.degree).distinct()]
+        
     if request.method == 'POST':
-        if form.validate_on_submit:
-            data = request.form
-            done = create_user(username = data['username'], password = data['password'],email = data['email'])
-            if done:
-                flash('Signup successful')
-                
-            else:
-                flash('username or email already in use')
+        fdata = SignUp(request.form)
+        done = user_profile_create(fdata.data) 
+        print (done)
+        if done:
+            flash("User profile created")
+            return redirect('/login')
+        else:
+            flash("User profile not created")
+            return redirect('/signup')
     else:
+        
         return render_template('signup.html',form=form) 
 
 @user_views.route('/login', methods = ['GET','POST'])
-def account_login():
-    form = Login()
+def account_login(): 
     if request.method == 'POST':
-        if form.validate_on_submit:
-            data = request.form
-            user = authenticate(username = data['username'], password = data['password'])
-            if user:
-                login_user(user, remember = True)
-                flash('Login successful')
-                return redirect('/')
-            else:
-                flash('Wrong username or password')
+        form = Login(request.form)
+        user = authenticate(username = form.username.data, password = form.password.data)
+        if user:
+            flash('Login successful')
+            loginuser(user,remember = True)
+            return redirect('/')
+        else:
+            flash('Wrong username or password')
     else:
-        return render_template('login.html',form=form)#change page to whatever template
+        form = Login()
+        return render_template('login.html',form=form)
 
 @user_views.route('/logout', methods=['GET'])
 @login_required
 def account_logout():
-    logout_user()
+    logoutuser()
     flash('Logout successful')
     return redirect('/login')
 
