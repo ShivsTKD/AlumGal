@@ -96,10 +96,11 @@ def propics():
     for name in names:
         parts = name.split()
         puser = Profile.query.filter_by(first_name = parts[0], last_name = parts[1]).first()
-        # ids.append(puser.uid)
-        print(parts[0], parts[1])
+        ids.append(puser.uid)
+        print(name)
     # for id in range(0, len(ids)):
     #     profile = Profile.query.filter_by(uid = ids[id]).first()
+    #     print(f"{names[ids[id]]}", id)
     #     token = storage.child(f'Userpics/{profile.uid}.jpg').put(f'Userpics/{names[ids[id]]}.jpg')
     #     purl = storage.child(f'Userpics/{id}.jpg').get_url(token['downloadTokens'])
     #     profile.pro_pic = f"{purl}"
