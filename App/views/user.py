@@ -36,7 +36,7 @@ def file():
 @user_views.route('/signup', methods=['POST','GET'])
 def post_signup_info(): ##unfinished but still renders as intended post no fully implemented
     form = SignUp()
-    form.programme.choices = [(p.name, p.name) for p in Programme.query.all()]
+    form.programme.choices = [(p.name, p.name) for p in Programme.query.all().distinct()]
     form.degree.choices = [(p.degree,p.degree) for p in Programme.query.with_entities(Programme.degree).distinct()]
     if request.method == 'POST':
         fdata = SignUp(request.form)
@@ -66,6 +66,7 @@ def account_login():
             return redirect('/')
         else:
             flash('Wrong username or password')
+            return redirect('/login')
     else:
         form = Login()
         return render_template('login.html',form=form)#change page to whatever template
@@ -87,6 +88,12 @@ def account_logout():
 #         return results
 #     else:
 #         # return render_template('',form = form)
+
+@user_views.route('/profile/<pid>', methods=['GET'])
+def get_profile(pid):
+    pro = Profile.query.filter_by(pid = pid).first()
+    return render_template('profile.html', profile=pro)
+    #anchor this route on to the student card to fetch profile details
 
 
 @user_views.route('/search/<fname>+<lname>', methods=['GET'])

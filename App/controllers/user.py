@@ -1,8 +1,8 @@
 from App.models import User,Profile,Programme
 from App.database import db
 from sqlalchemy.exc import IntegrityError
-#from App.controllers import storage
-
+from App.controllers import firebaseconfig
+from os import remove
 def get_all_users():
     return User.query.all()
 
@@ -46,12 +46,12 @@ def create_profile(email,profile_data,filename):
         )
         db.session.add(profile)
         db.session.commit()
-        os.remove(f"images\{filename}")
+        remove(f"images\{filename}")
         return True
     except(Exception):
         User.query.filter_by(email = email).delete()
         db.session.commit()
-        os.remove(f"images\{filename}")
+        remove(f"images\{filename}")
         print ("deleted user")
         return False
 
