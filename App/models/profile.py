@@ -14,8 +14,8 @@ class Profile(db.Model):
 
     def toDict(self):
         return{
-                'p_id' :self.p_id,
-                'u_id ':self.u_id,
+                'pid' :self.pid,
+                'uid ':self.uid,
                 'first_name' :self.first_name,
                 'last_name' :self.last_name,
                 'programme_id':self.programme_id,
@@ -23,5 +23,5 @@ class Profile(db.Model):
                 'facebook': self.facebook,
                 'instagram': self.instagram,
                 'linkedin': self.linkedin,
-                'profile_pic': self.url
+                'pro_pic': self.url
         }
