@@ -44,7 +44,7 @@ async function main(){
     loadTable(users);
 }
 
-main();
+//main();
 M.AutoInit();
 
 let password = document.querySelector("#password");

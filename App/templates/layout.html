@@ -9,6 +9,9 @@
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/materialize/1.0.0/css/materialize.min.css">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
     <link rel="stylesheet" href="/static/style.css">
+    <!-- Preload Home images -->
+    <link rel="preload" as="image" href="/static/pictures/bg.jpg">
+    <link rel="preload" as="image" href="/static/pictures/2ndbg.jpg">
     <!--Let browser know website is optimized for mobile-->
     <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
     <title>{% block title %}{% endblock %}</title>
@@ -38,10 +41,10 @@
     <aside id="aside">
       <span onclick="asideDisplay()">✕</span>
       <a href="#recentAlums">Most Recent Alumni</a>
-      <a href="">About Us</a>
+      <a href="#aboutus">About Us</a>
       <a href="">Leave A Comment</a>
       <a href="/logout">Logout</a>
-      <img src="/static/pictures/Head.png" alt="HeadLogo">
+      <img src="/static/pictures/head.png" alt="HeadLogo">
     </aside>
     <script src="https://cdnjs.cloudflare.com/ajax/libs/materialize/1.0.0/js/materialize.min.js"></script>
     <script src="/static/main.js"></script>

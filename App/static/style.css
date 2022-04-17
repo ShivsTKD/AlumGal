@@ -278,3 +278,18 @@ h5{
   align-items: center;
   justify-content: center;
 }
+
+
+
+#aboutuscard {
+  width: 0;
+  background-color: rgba(0, 0, 0, 0.6);
+  margin-left: auto;
+  height: 50vh;
+  transition: all 300ms ease;
+}
+
+#aboutus:hover > #aboutuscard{
+  width: 35vw;
+  padding: 0 2em;
+}
