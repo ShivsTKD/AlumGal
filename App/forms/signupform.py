@@ -16,7 +16,7 @@ class SignUp(FlaskForm):
     confirmpwd  = PasswordField(validators=[InputRequired(), EqualTo('password')])
     programme = SelectField(validators=[InputRequired()])
     degree = SelectField(validators=[InputRequired()]) 
-    grad_year = IntegerField(validators=[InputRequired()])
+    grad_year = SelectField(validators=[InputRequired()])
     fb = URLField()
     ig = URLField()
     l_in = URLField()

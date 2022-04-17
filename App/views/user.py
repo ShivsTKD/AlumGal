@@ -29,6 +29,8 @@ def no_auth():
 @login_required
 def file():
     users = Profile.query.all()[-3:]
+    for user in users:
+        print(user.pid, user.first_name)
     return render_template('home.html',users=users)
 
 
@@ -36,8 +38,14 @@ def file():
 @user_views.route('/signup', methods=['POST','GET'])
 def post_signup_info(): ##unfinished but still renders as intended post no fully implemented
     form = SignUp()
-    form.programme.choices = [(p.name, p.name) for p in Programme.query.all().distinct()]
-    form.degree.choices = [(p.degree,p.degree) for p in Programme.query.with_entities(Programme.degree).distinct()]
+    programmeList = []
+    programmes = Programme.query.all()
+    for p in programmes:
+        if p.name not in programmeList:
+            programmeList.append(p.name)
+    form.programme.choices = programmeList
+    form.degree.choices = ['B.Sc.', 'M.Sc.']
+    form.grad_year.choices = ['2020', '2021', '2022']
     if request.method == 'POST':
         fdata = SignUp(request.form)
         image = request.files['img']

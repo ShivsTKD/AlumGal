@@ -3,15 +3,20 @@
 {% block page %}Signup{% endblock %}
 
 {% block nav %}
-<ul class="right" id="nav-mobile">
-    <li><a href="/login">Login</a></li>
-</ul>
+<div style="justify-content: center;">
+    <a href="/"><img class="responsive-img" src="/static/pictures/center logo.png" alt="UCE Logo"></a>
+</div>
 {% endblock %}
 
 {{ super() }}
 
 {% block content %}
-<main class="container" style="padding-top: 4em;">
+<div id="login">
+    <a href="/login">Login</a>
+</div>
+<main class="container center">
+    <h4>Member Signup</h4>
+    <div class="container">
     <form id="signupform" class="card" method="post" action="/signup" enctype="multipart/form-data" style="padding: 1em;">
         <div class="row">
             <div class="col s12">
@@ -128,6 +133,7 @@
             </div>
         </div>
     </form>
+    </div>
 </main>
 
 {% endblock %}
