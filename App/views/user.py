@@ -25,18 +25,22 @@ def no_auth():
     return redirect('/login')
 
 
-@user_views.route('/')
+@user_views.route('/', methods=['POST','GET'])
 @login_required
 def file():
     users = Profile.query.all()[-3:]
     for user in users:
         print(user.pid, user.first_name)
+    if request.method == 'POST':
+        form = request.form
+        results = user_search(form.data)
+        return render_template('',results=results)
     return render_template('home.html',users=users)
 
 
 
 @user_views.route('/signup', methods=['POST','GET'])
-def post_signup_info(): ##unfinished but still renders as intended post no fully implemented
+def post_signup_info():
     form = SignUp()
     programmeList = []
     programmes = Programme.query.all()
@@ -77,7 +81,7 @@ def account_login():
             return redirect('/login')
     else:
         form = Login()
-        return render_template('login.html',form=form)#change page to whatever template
+        return render_template('login.html',form=form)
 
 @user_views.route('/logout', methods=['GET'])
 @login_required
@@ -98,6 +102,7 @@ def account_logout():
 #         # return render_template('',form = form)
 
 @user_views.route('/profile/<pid>', methods=['GET'])
+@login_required
 def get_profile(pid):
     pro = Profile.query.filter_by(pid = pid).first()
     return render_template('profile.html', profile=pro)
