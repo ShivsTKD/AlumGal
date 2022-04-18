@@ -45,8 +45,8 @@
 <p style="text-align: center;">Search for Alumni Members by common programmes, departments, faculties, etc.
     You can connect with all of your fellow graduates with the click of a button.</p>
 
-<h3 style="text-align: center;">Meet our most recently joined Alumni Members</h3>
-<div class="carousel-container" id="recentAlums">
+<h3 id="recentAlums" style="text-align: center;">Meet our most recently joined Alumni Members</h3>
+<div class="carousel-container">
     
     {% for user in users %}
         <div class="card">
@@ -81,5 +81,25 @@
         </p>
     </section>
 </div>
+
+<footer>
+    <div>
+        <span>Here are some quicklinks:</span>
+        <a href="/users">All Alumni Members</a>
+        <a href="#recentAlums">Most Recent Members</a>
+        <a href="">Advanced Search</a>
+    </div>
+    <div>
+        Check out our Social Media!
+        <img id="socials" style="cursor: pointer;" src="/static/pictures/SocialMediaIcons.png" alt="Social Media Links">
+    </div>
+    <div>
+        <span>Developed by the UCE Development Team:</span>
+        <span>Munesha Beharry</span>
+        <span>Raveena Ramnarine</span>
+        <span>Shivan Maharaj</span>
+        <span>Trey Murray</span>
+    </div>
+</footer>
 
 {% endblock %}
