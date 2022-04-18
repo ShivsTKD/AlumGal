@@ -1,23 +1,66 @@
 from App.models import Profile
 from App.database import db
 
-def user_search(fname,lname):
+def user_search(name):
     results = []
-    if fname == None and lname != None:
-        #search by last name
-        user = Profile.query.filter_by(last_name=lname).all()
-        
-    elif fname != None and lname == None :
-        #search by first name
-        user = Profile.query.filter_by(first_name=fname).all
-        
+    if name.count(' ') == 0:
+        user = Profile.query.filter_by(last_name=name).all()
+        if user == None:
+            user = Profile.query.filter_by(first_name=name).all()
+            if user == None:
+                return None
+            else:
+                for u in user:
+                  results.append(u.toDict)
+                return results
+        else:
+            for u in user:
+                results.append(u.toDict)
+            return results     
+    if name.count(' ')  == 1:
+        parts = name.split()
+        user = Profile.query.filter_by(first_name=parts[0])
+        if user == None:
+            user = Profile.query.filter_by(first_name=parts[1])
+            if user == None:
+                return None
+            user = user.filter_by(last_name=parts[0])
+            if user == None:
+                return None
+            for u in user:
+                results.append(u.toDict)
+            return results    
+        else:
+            user = user.filter_by(last_name=parts[1])
+            if user == None:
+                return None
+            for u in user:
+                results.append(u.toDict)
+            return results   
     else:
-        #search by both first and last names
-        user = Profile.query.filter_by(first_name = fname,last_name=lname).all()
+         return 'Invalid'
+
+
+
+
+        
+            
+    else:
+
+    # elif fname != None and lname == None :
+    #     #search by first name
+    #     user = Profile.query.filter_by(first_name=fname).all
+        
+    # else:
+    #     #search by both first and last names
+    #     user = Profile.query.filter_by(first_name = fname,last_name=lname).all()
     
-    for u in user:
-        results.append(u.toDict)
-    return results
+    # if user == None:
+    #     return None
+
+    # for u in user:
+    #     results.append(u.toDict)
+    # return results
 
 def adv_search(fields):
     valid_fields = dict()

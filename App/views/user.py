@@ -37,7 +37,20 @@ def file():
         print(user.pid, user.first_name)
     if request.method == 'POST':
         form = request.form
-        results = user_search(form.data)
+        if form is None:
+            flash('Please enter first name and last name')
+            return redirect('/')
+        name = form.data
+        results = user_search(name)
+
+        if results == 'Invalid':
+            flash('Invalid search item!')
+            return redirect('/')
+        
+        if results == None:
+            flash('No results found')
+            return redirect('/')
+        
         return render_template('',results=results) # add results page here
     return render_template('home.html',users=users)
 
