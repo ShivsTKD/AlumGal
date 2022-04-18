@@ -10,7 +10,7 @@ from App.controllers import ( create_user, get_all_users_json, get_user )
 from App.database import db
 from App.models import Programme,User,Profile
 from App.controllers import storage
-
+from App.controllers import user_search
 @app.cli.command("init")
 def initialize():
     create_db(app)
@@ -46,6 +46,15 @@ def get_a_user(username):
 def get_users():
     print(get_all_users_json())
 
+@app.cli.command("search")
+@click.argument("name")
+def search(name):
+    if name.count('_') == 1:
+        s = name.split('_')
+        print(user_search(s[0]+" "+s[1]))
+    else:
+        print(user_search(name))
+    
 
 def programmes(): 
     with open(r'App/programs.csv') as file:
