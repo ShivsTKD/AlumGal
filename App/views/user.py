@@ -24,6 +24,10 @@ user_views = Blueprint('user_views', __name__, template_folder='../templates')
 def no_auth():
     return redirect('/login')
 
+@user_views.errorhandler(404)
+def page_not_found(error):
+    flash('Invalid route')
+    redirect('/')
 
 @user_views.route('/', methods=['POST','GET'])
 @login_required
@@ -109,12 +113,12 @@ def get_profile(pid):
     #anchor this route on to the student card to fetch profile details
 
 
-@user_views.route('/search/<fname>+<lname>', methods=['GET'])
-@login_required # to change
-def user_search(fname, lname):
-    #search by first name , last name or both
-    result = user_search(fname,lname)
-    return result
+# @user_views.route('/search/<fname>+<lname>', methods=['GET'])
+# @login_required # to change
+# def user_search(fname, lname):
+#     #search by first name , last name or both
+#     result = user_search(fname,lname)
+#     return result
 
 @user_views.route('/users', methods=['GET'])
 def list_users():
