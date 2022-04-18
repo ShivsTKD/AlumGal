@@ -38,7 +38,7 @@ def file():
     if request.method == 'POST':
         form = request.form
         results = user_search(form.data)
-        return render_template('',results=results)
+        return render_template('',results=results) # add results page here
     return render_template('home.html',users=users)
 
 
