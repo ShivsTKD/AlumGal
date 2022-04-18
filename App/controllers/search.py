@@ -34,28 +34,6 @@ def user_search(name):
     else:
          return 'Invalid'
 
-
-
-
-        
-            
-    # else:
-
-    # elif fname != None and lname == None :
-    #     #search by first name
-    #     user = Profile.query.filter_by(first_name=fname).all
-        
-    # else:
-    #     #search by both first and last names
-    #     user = Profile.query.filter_by(first_name = fname,last_name=lname).all()
-    
-    # if user == None:
-    #     return None
-
-    # for u in user:
-    #     results.append(u.toDict)
-    # return results
-
 def adv_search(fields):
     valid_fields = dict()
     results = []
