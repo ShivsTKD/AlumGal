@@ -1,5 +1,5 @@
 import os
-from flask import Flask
+from flask import Flask,flash,redirect,url_for
 from flask_uploads import IMAGES, UploadSet, configure_uploads
 from flask_cors import CORS
 from werkzeug.utils import secure_filename
@@ -61,3 +61,8 @@ def create_app(config={}):
 app = create_app()
 
 migrate = get_migrate(app)
+
+@app.errorhandler(404)
+def page_not_found(error):
+    flash('404 page not found')
+    return redirect(url_for('user_views.home'))
