@@ -37,29 +37,51 @@ def user_search(name):
 def adv_search(fields):
     valid_fields = dict()
     results = []
-    profiles = db.session.query(Profile)
+    profile = db.session.query(Programme)
     for key in fields:
         if fields[key] is not None and fields[key] != '':
             valid_fields[key] = fields[key]
     
     print(valid_fields)
-    for attr,key in valid_fields.items():
-        print(attr,key)
-        if key == 'graduation_year':
-            profiles = Profile.query.filter_by(graduation_year=int(key))
-        else:
-            profiles = profiles.filter(getattr(Profile, attr).like("%%%s%%" % key)).all()
 
-        if key == 'name' or key == 'degree':
-            progs = Programme.query.filter(getattr(Programme, "%").like("%%%s%%" % valid_fields[key])).all()
+    if 'last_name' in valid_fields:
+        profile = profile.filter(Programme.profiles.any(last_name = valid_fields['last_name']))
+    if 'first_name' in valid_fields:
+        profile = profile.filter(Programme.profiles.any(first_name = valid_fields['first_name']))    
+    if 'last_name' in valid_fields:
+        profile = profile.filter(Programme.profiles.any(last_name = valid_fields['last_name']))
+    if 'graduation_year' in valid_fields:
+        profile = profile.filter(Programme.profiles.any(graduation_year = valid_fields['graduation_year']))
+    if 'degree' in valid_fields:
+        profile = profile.filter_by(degree = valid_fields['degree'] )
+    if 'programme' in valid_fields:
+        profile = profile.filter_by(name = valid_fields['programme'])
 
-    if progs:
-        for p in progs:
-            results.append(p.profiles)
+    obj = profile.all()
+    print(obj)
+
+    for  i in obj:
+        print( i.name , i.degree)
+        for a in i:
+            print( a.profiles.first_name , a.profiles.last_name, a.profiles.graduation_year)
+    
+    
+    # for attr,key in valid_fields.items():
+    #     if key == 'graduation_year':
+    #         profiles = Profile.query.filter_by(graduation_year=int(key))
+    #     else:
+    #         profiles = profiles.filter(getattr(Profile, attr).like("%%%s%%" % key)).all()
+
+    #     if key == 'name' or key == 'degree':
+    #         progs = Programme.query.filter(getattr(Programme, "%").like("%%%s%%" % valid_fields[key])).all()
+
+    # if progs:
+    #     for p in progs:
+    #         results.append(p.profiles)
         
 
-    for profile in profiles:
-        results.append(profile.toDict())
+    # for profile in profiles:
+    #     results.append(profile.toDict())
 
-    return results
+    return None
     
