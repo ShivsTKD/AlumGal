@@ -242,6 +242,10 @@ input:focus::placeholder {
   background-color: rgb(235, 197, 8);
 }
 
+.carousel-container .card-content>h5 {
+  color: black;
+}
+
 h5{
   font-weight: 500;
 }
@@ -302,6 +306,55 @@ h5{
   visibility: visible;
 }
 
+#user{
+  height: 80vh;
+  margin: auto;
+  display: flex;
+  flex-direction: row;
+}
+
+#user>div{
+  flex-grow: 2;
+  display: flex;
+}
+
+#details{
+  padding: 0 2em;
+  flex-direction: column;
+}
+
+#userimg{
+  justify-content: center;
+}
+
+#userimg>img{
+  margin: auto;
+  height: 70vh;
+  width: auto;
+}
+
+#socialInfo{
+  display: flex;
+  justify-content: center;
+  flex-direction: column;
+  margin-top: 2em;
+}
+
+#socialInfo>span{
+  display: inline-block;
+}
+
+#socialInfo>div{
+  height: 6em;
+  flex-direction: row;
+  display: flex;
+  justify-content: center;
+}
+
+#socialInfo a{
+  margin: auto;
+}
+
 footer {
   margin-top: 6em;
   padding: 3em 0;
@@ -312,15 +365,20 @@ footer {
 }
 
 footer>div{
+  flex-basis: 33vw;
   display: flex;
   flex-direction: column;
   justify-content: center;
+}
+
+footer>div *{
   margin: auto;
 }
 
 footer>div>img{
   min-height: 8em;
   height: 15vmin;
+  max-width: 25vmin;
 }
 
 footer>div>a{

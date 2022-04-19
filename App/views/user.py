@@ -8,7 +8,6 @@ from App.controllers import (
     create_user, 
     get_user,
     get_all_users,
-    get_all_users_json,
     loginuser,
     logoutuser,
     authenticate,
@@ -33,8 +32,6 @@ def page_not_found(error):
 @login_required
 def file():
     users = Profile.query.all()[-3:]
-    for user in users:
-        print(user.pid, user.first_name)
     if request.method == 'POST':
         form = request.form
         if form is None:
@@ -51,7 +48,7 @@ def file():
             flash('No results found')
             return redirect('/')
         
-        return render_template('',results=results) # add results page here
+        return render_template('users.html',results=results) # add results page here
     return render_template('home.html',users=users)
 
 
@@ -121,8 +118,9 @@ def account_logout():
 @user_views.route('/profile/<pid>', methods=['GET'])
 @login_required
 def get_profile(pid):
-    pro = Profile.query.filter_by(pid = pid).first()
-    return render_template('profile.html', profile=pro)
+    user = Profile.query.filter_by(pid = pid).first()
+    prog = Programme.query.filter_by(id = user.programme_id).first()
+    return render_template('user.html', user=user, prog=prog)
     #anchor this route on to the student card to fetch profile details
 
 
@@ -142,18 +140,3 @@ def list_users():
 def get_user_page(username):
     user = get_user(username)
     return render_template('user.html', user=user)
-
-@user_views.route('/api/users')
-def client_app():
-    users = get_all_users_json()
-    return jsonify(users)
-
-@user_views.route('/api/lol')
-def lol():
-    return 'lol'
-
-
-
-@user_views.route('/static/users')
-def static_user_page():
-  return send_from_directory('static', 'static-user.html')

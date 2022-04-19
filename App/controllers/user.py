@@ -3,6 +3,7 @@ from App.database import db
 from sqlalchemy.exc import IntegrityError
 from App.controllers import firebaseconfig
 from os import remove
+
 def get_all_users():
     return User.query.all()
 
@@ -17,14 +18,6 @@ def create_user(username, password, email):
         return True
     except IntegrityError:
         return False
-
-
-def get_all_users_json():
-    users = User.query.all()
-    if not users:
-        return []
-    users = [user.toDict() for user in users]
-    return users
 
 def create_profile(email,profile_data,filename):
     try:

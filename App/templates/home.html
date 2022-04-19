@@ -49,14 +49,14 @@
 <div class="carousel-container">
     
     {% for user in users %}
-        <div class="card">
+        <a href="/profile/{{user.pid}}" class="card">
             <div class="card-image">
                 <img src="{{user.url}}" alt="{{user.first_name}} {{user.last_name}}">
             </div>
             <div class="card-content">
                 <h5 style="text-align: center;">{{user.first_name}} {{user.last_name}}</h5>
             </div>
-        </div>
+        </a>
     {% endfor %}
    
 {% endblock %}
@@ -84,13 +84,13 @@
 
 <footer>
     <div>
-        <span>Here are some quicklinks:</span>
+        <span>Here are some Quicklinks:</span>
         <a href="/users">All Alumni Members</a>
         <a href="#recentAlums">Most Recent Members</a>
         <a href="">Advanced Search</a>
     </div>
     <div>
-        Check out our Social Media!
+        <span>Check out our Social Media!</span> 
         <img id="socials" style="cursor: pointer;" src="/static/pictures/SocialMediaIcons.png" alt="Social Media Links">
     </div>
     <div>
