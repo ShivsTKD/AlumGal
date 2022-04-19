@@ -8,6 +8,14 @@ def get_all_users():
     users = Profile.query.all()
     return users
 
+def get_programmes():
+    programmeList = []
+    programmes = Programme.query.all()
+    for p in programmes:
+        if p.name not in programmeList:
+            programmeList.append(p.name)
+    return programmeList
+
 def get_user(username):
     return User.query.filter_by(username=username).first()
 

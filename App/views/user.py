@@ -7,6 +7,7 @@ from werkzeug.utils import secure_filename
 from App.controllers import (
     create_user, 
     get_user,
+    get_programmes,
     get_all_users,
     loginuser,
     logoutuser,
@@ -58,12 +59,7 @@ def file():
 @user_views.route('/signup', methods=['POST','GET'])
 def post_signup_info():
     form = SignUp()
-    programmeList = []
-    programmes = Programme.query.all()
-    for p in programmes:
-        if p.name not in programmeList:
-            programmeList.append(p.name)
-    form.programme.choices = programmeList
+    form.programme.choices = get_programmes()
     form.degree.choices = ['B.Sc.', 'M.Sc.']
     form.grad_year.choices = ['2020', '2021', '2022']
     if request.method == 'POST':
@@ -112,10 +108,14 @@ def advsearch():
     form = AdvSearch()
     if request.method == 'POST':
         data = request.form
+        print(data)
         results = adv_search(data)
-        return results
+        return render_template('users.html', results=results)
     else:
-        return render_template('advsearch.html',form = form)
+        programmes = get_programmes()
+        degrees = ['B.Sc.', 'M.Sc.']
+        years = ['2020', '2021', '2022']
+        return render_template('advsearch.html', form = form, programmes = programmes, degrees = degrees, years = years)
 
 @user_views.route('/profile/<pid>', methods=['GET'])
 @login_required
@@ -137,8 +137,3 @@ def get_profile(pid):
 def list_users():
     users = Profile.query.limit(25).all()
     return render_template('users.html', results=users)
-
-@user_views.route('/users/<username>', methods=['GET'])
-def get_user_page(username):
-    user = get_user(username)
-    return render_template('user.html', user=user)

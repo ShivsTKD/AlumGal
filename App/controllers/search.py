@@ -1,4 +1,4 @@
-from App.models import Profile
+from App.models import Profile, Programme
 from App.database import db
 
 def user_search(name):
@@ -39,14 +39,26 @@ def adv_search(fields):
     results = []
     profiles = Profile.query(Profile)
     for key in fields:
-        if fields[key] != None:
+        if fields[key] is not None and fields[key] != '':
             valid_fields[key] = fields[key]
     
-    for key, value in valid_fields.items:
-        profiles = profiles.filter(getattr(Profile, key).like("%%%s%%" % value))
-    
+    print(valid_fields)
+    for key in valid_fields:
+        if key == 'graduation_year':
+            profiles = Profile.query.filter_by(graduation_year=int(valid_fields[key]))
+        else:
+            profiles = profiles.filter(getattr(Profile, key).like("%%%s%%" % valid_fields[key])).all()
+
+        if key == 'name' or key == 'degree':
+            progs = Programme.query.filter(getattr(Programme, key).like("%%%s%%" % valid_fields[key])).all()
+
+    if progs:
+        for p in progs:
+            results.append(p.profiles)
+        
+
     for profile in profiles:
-        results.append(profile.toDict)
+        results.append(profile.toDict())
 
     return results
     

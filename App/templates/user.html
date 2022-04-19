@@ -2,8 +2,12 @@
 {% block title %}{{user.first_name}} {{user.last_name}}{% endblock %}
 {% block page %}{{user.first_name}} {{user.last_name}}{% endblock %}
 {% block nav %}
-<div>
-   
+<div onclick="asideDisplay()">
+   <div class="navi" onclick="asideDisplay()">
+       <div class="one"></div>
+       <div class="two"></div>
+       <div class="three"></div>
+   </div>
 </div>
 <div style="justify-content: center;">
    <a href="/"><img class="responsive-img" src="/static/pictures/center logo.png" alt="UCE Logo"></a>
@@ -48,8 +52,8 @@
    <div>
        <span>Here are some Quicklinks:</span>
        <a href="/users">All Alumni Members</a>
-       <a href="#recentAlums">Most Recent Members</a>
-       <a href="">Advanced Search</a>
+       <a href="/#recentAlums">Most Recent Members</a>
+       <a href="/advsearch">Advanced Search</a>
    </div>
    <div>
        <span>Check out our Social Media!</span> 

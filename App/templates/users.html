@@ -2,8 +2,12 @@
 {% block title %}Alumni Members{% endblock %}
 {% block page %}Alumni Members{% endblock %}
 {% block nav %}
-<div>
-   
+<div onclick="asideDisplay()">
+   <div class="navi" onclick="asideDisplay()">
+       <div class="one"></div>
+       <div class="two"></div>
+       <div class="three"></div>
+   </div>
 </div>
 <div style="justify-content: center;">
    <a href="/"><img class="responsive-img" src="/static/pictures/center logo.png" alt="UCE Logo"></a>
@@ -19,6 +23,11 @@
 {{ super() }}
 
 {% block content %}
+{% if not results %}
+<div>
+   <h3 class="center">No Alumni Members were found with those specifications</h3>
+</div>
+{% endif %}
 <div>
    <h3 class="center">List of Alumni Members</h3>
 </div>
