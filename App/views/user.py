@@ -108,7 +108,7 @@ def advsearch():
     form = AdvSearch()
     if request.method == 'POST':
         data = request.form
-        print(data)
+        #print(data)
         results = adv_search(data)
         return render_template('users.html', results=results)
     else:

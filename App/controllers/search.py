@@ -37,20 +37,21 @@ def user_search(name):
 def adv_search(fields):
     valid_fields = dict()
     results = []
-    profiles = Profile.query(Profile)
+    profiles = db.session.query(Profile)
     for key in fields:
         if fields[key] is not None and fields[key] != '':
             valid_fields[key] = fields[key]
     
     print(valid_fields)
-    for key in valid_fields:
+    for attr,key in valid_fields.items():
+        print(attr,key)
         if key == 'graduation_year':
-            profiles = Profile.query.filter_by(graduation_year=int(valid_fields[key]))
+            profiles = Profile.query.filter_by(graduation_year=int(key))
         else:
-            profiles = profiles.filter(getattr(Profile, key).like("%%%s%%" % valid_fields[key])).all()
+            profiles = profiles.filter(getattr(Profile, attr).like("%%%s%%" % key)).all()
 
         if key == 'name' or key == 'degree':
-            progs = Programme.query.filter(getattr(Programme, key).like("%%%s%%" % valid_fields[key])).all()
+            progs = Programme.query.filter(getattr(Programme, "%").like("%%%s%%" % valid_fields[key])).all()
 
     if progs:
         for p in progs:
