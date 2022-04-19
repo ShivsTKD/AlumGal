@@ -37,7 +37,7 @@ def user_search(name):
 def adv_search(fields):
     valid_fields = dict()
     results = []
-    profile = db.session.query(Programme)
+    profile = db.session.query(Profile)
     for key in fields:
         if fields[key] is not None and fields[key] != '':
             valid_fields[key] = fields[key]
@@ -45,25 +45,22 @@ def adv_search(fields):
     print(valid_fields)
 
     if 'last_name' in valid_fields:
-        profile = profile.filter(Programme.profiles.any(last_name = valid_fields['last_name']))
+        profile = profile.filter_by(last_name = valid_fields['last_name'])
     if 'first_name' in valid_fields:
-        profile = profile.filter(Programme.profiles.any(first_name = valid_fields['first_name']))    
-    if 'last_name' in valid_fields:
-        profile = profile.filter(Programme.profiles.any(last_name = valid_fields['last_name']))
+        profile = profile.filter_by(first_name = valid_fields['first_name'])   
     if 'graduation_year' in valid_fields:
-        profile = profile.filter(Programme.profiles.any(graduation_year = valid_fields['graduation_year']))
+        profile = profile.filter_by(graduation_year = valid_fields['graduation_year'])
     if 'degree' in valid_fields:
-        profile = profile.filter_by(degree = valid_fields['degree'] )
-    if 'programme' in valid_fields:
-        profile = profile.filter_by(name = valid_fields['programme'])
+        profile = profile.filter(Profile.programme.has(degree = valid_fields['degree']))
+    if 'name' in valid_fields:
+        profile = profile.filter(Profile.programme.has(name = valid_fields['name']))
 
     obj = profile.all()
     print(obj)
 
     for  i in obj:
-        print( i.name , i.degree)
-        for a in i:
-            print( a.profiles.first_name , a.profiles.last_name, a.profiles.graduation_year)
+        print( i.first_name, i.last_name)
+
     
     
     # for attr,key in valid_fields.items():
