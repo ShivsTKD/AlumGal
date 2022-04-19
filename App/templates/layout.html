@@ -10,13 +10,14 @@
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
     <link rel="stylesheet" href="/static/style.css">
     <!-- Preload Home images -->
-    <link rel="preload" as="image" href="/static/pictures/bg.jpg">
-    <link rel="preload" as="image" href="/static/pictures/2ndbg.jpg">
+    <link rel="prefetch" as="image" href="/static/pictures/bg.jpg">
+    <link rel="prefetch" as="image" href="/static/pictures/2ndbg.jpg">
     <!--Let browser know website is optimized for mobile-->
     <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
     <title>{% block title %}{% endblock %}</title>
   </head>
   <body>
+    <a name="top"></a>
     <nav id="navbar">
       {% block nav %}
       
@@ -40,9 +41,10 @@
     {% block aftercontent %}{% endblock %}
     <aside id="aside">
       <span onclick="asideDisplay()">✕</span>
+      <a href="/">Home</a>
       <a href="#recentAlums">Most Recent Alumni</a>
       <a href="#aboutus">About Us</a>
-      <a href="">Leave A Comment</a>
+      <a href="#socials">Check Out Our Socials</a>
       <a href="/logout">Logout</a>
       <img src="/static/pictures/head.png" alt="HeadLogo">
     </aside>

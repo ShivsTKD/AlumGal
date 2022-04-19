@@ -1,0 +1,44 @@
+{% extends "layout.html" %}
+{% block title %}Login{% endblock %}
+{% block page %}Login{% endblock %}
+{% block nav %}
+<div style="justify-content: center;">
+    <a href="/"><img class="responsive-img" src="/static/pictures/center logo.png" alt="UCE Logo"></a>
+</div>
+{% endblock %}
+
+{{ super() }}
+
+{% block content %}
+<main class="container center">
+    <h4>Advanced Search</h4>
+    <div class="container">
+        <form class="card col s12" method="post" action="/login" style="padding: 1em;">
+            <div class="row">
+                <div class="input-field col s12">
+                    {{ form.first_name(class="validate", autofocus=true) }}
+                    <label>First Name</label> 
+                </div>
+            </div>
+            <div class="row">
+                <div class="input-field col s12">
+                    {{ form.last_name(class="validate", autofocus=true) }}
+                    <label>Last Name</label> 
+                </div>
+            </div>
+            <div class="row">
+                <div class="input-field col s12">
+                    {{ form.password(class="validate") }}
+                    <label>Password</label> 
+                </div>
+            </div>
+            
+            <button class="btn waves-effect waves-light green" style="display: flex; align-items: center;">
+                Submit
+                <i class="material-icons" style="margin-left: 0.5em;">send</i>
+            </button>
+            <span>If you don't have an account, click here to <a href="/signup">Sign Up</a></span>
+        </form>
+    </div>
+</main>
+{% endblock %}

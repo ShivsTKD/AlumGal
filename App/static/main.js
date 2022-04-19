@@ -24,27 +24,6 @@ function removeFlash(){
     fm.style.display = "none";
 }
 
-async function getUserData(){
-    const response = await fetch('/api/users');
-    return response.json();
-}
-
-function loadTable(users){
-    const table = document.querySelector('#result');
-    for(let user of users){
-        table.innerHTML += `<tr>
-            <td>${user.id}</td>
-            <td>${user.username}</td>
-        </tr>`;
-    }
-}
-
-async function main(){
-    const users = await getUserData();
-    loadTable(users);
-}
-
-//main();
 M.AutoInit();
 
 let password = document.querySelector("#password");
@@ -74,4 +53,26 @@ function S_Tab(){
     setTimeout(() => {
         history.replaceState('', document.title, window.location.origin + window.location.pathname + window.location.search)
     }, 5);
+}
+
+let numUsers = 0;
+
+async function loadMoreUsers(){
+  numUsers += 25;
+  let result = document.getElementById("resultListing");
+  let html = "";
+  let response = await fetch(`/loadusers/${numUsers}`);
+  let users = await response.json();
+  for (let user of users){
+    html += `
+      <a href="/profile/${user.pid}" class="card">
+        <img class="responsive-img" src="/static/Userpics/Zachary Bowen.jpg" alt="${user.first_name} ${user.last_name}">
+        <div>
+          <span>Name:      ${user.first_name} ${user.last_name}</span>
+          <span>Grad Year: ${user.graduation_year}</span>
+        </div>
+      </a>
+    `;
+  }
+  result.innerHTML += html;
 }

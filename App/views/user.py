@@ -8,7 +8,6 @@ from App.controllers import (
     create_user, 
     get_user,
     get_all_users,
-    get_all_users_json,
     loginuser,
     logoutuser,
     authenticate,
@@ -33,14 +32,14 @@ def page_not_found(error):
 @login_required
 def file():
     users = Profile.query.all()[-3:]
-    for user in users:
-        print(user.pid, user.first_name)
     if request.method == 'POST':
         form = request.form
-        if form is None:
-            flash('Please enter first name and last name')
+        if not form['searchbar']:
+            flash('Please enter a name')
             return redirect('/')
-        name = form.data
+             
+        name = form['searchbar']
+        print(name)
         results = user_search(name)
 
         if results == 'Invalid':
@@ -51,7 +50,7 @@ def file():
             flash('No results found')
             return redirect('/')
         
-        return render_template('',results=results) # add results page here
+        return render_template('users.html',results=results) # add results page here
     return render_template('home.html',users=users)
 
 
@@ -107,22 +106,23 @@ def account_logout():
     flash('Logout successful')
     return redirect('/login')
 
-# @user_views.route('/advsearch', methods=['GET','POST'])
-# @login_required
-# def advsearch():
-#     form = AdvSearch()
-#     if request.method == 'POST':
-#         data = request.form.data
-#         results = adv_search(data)
-#         return results
-#     else:
-#         # return render_template('',form = form)
+@user_views.route('/advsearch', methods=['GET','POST'])
+@login_required
+def advsearch():
+    form = AdvSearch()
+    if request.method == 'POST':
+        data = request.form
+        results = adv_search(data)
+        return results
+    else:
+        return render_template('advsearch.html',form = form)
 
 @user_views.route('/profile/<pid>', methods=['GET'])
 @login_required
 def get_profile(pid):
-    pro = Profile.query.filter_by(pid = pid).first()
-    return render_template('profile.html', profile=pro)
+    user = Profile.query.filter_by(pid = pid).first()
+    prog = Programme.query.filter_by(id = user.programme_id).first()
+    return render_template('user.html', user=user, prog=prog)
     #anchor this route on to the student card to fetch profile details
 
 
@@ -135,25 +135,10 @@ def get_profile(pid):
 
 @user_views.route('/users', methods=['GET'])
 def list_users():
-    users = get_all_users()
-    return render_template('users.html', users=users)
+    users = Profile.query.limit(25).all()
+    return render_template('users.html', results=users)
 
 @user_views.route('/users/<username>', methods=['GET'])
 def get_user_page(username):
     user = get_user(username)
     return render_template('user.html', user=user)
-
-@user_views.route('/api/users')
-def client_app():
-    users = get_all_users_json()
-    return jsonify(users)
-
-@user_views.route('/api/lol')
-def lol():
-    return 'lol'
-
-
-
-@user_views.route('/static/users')
-def static_user_page():
-  return send_from_directory('static', 'static-user.html')

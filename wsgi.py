@@ -6,7 +6,7 @@ from os import listdir
 from os.path import splitext
 from App.database import create_db
 from App.main import app, migrate
-from App.controllers import ( create_user, get_all_users_json, get_user )
+from App.controllers import ( create_user, get_all_users, get_user )
 from App.database import db
 from App.models import Programme,User,Profile
 from App.controllers import storage
@@ -44,7 +44,7 @@ def get_a_user(username):
 
 @app.cli.command("get-users")
 def get_users():
-    print(get_all_users_json())
+    print([p.toDict() for p in get_all_users()])
 
 @app.cli.command("search")
 @click.argument("name")
@@ -101,7 +101,6 @@ def propics():
     for image in images:
         imgName = splitext(image)
         names.append(imgName[0])
-    ids = []
     for name in names:
         parts = name.split()
         puser = Profile.query.filter_by(first_name = parts[0], last_name = parts[1]).first()
@@ -120,7 +119,7 @@ def populate():
     print("populating...")
     # programmes()
     # userprofile()
-    propics()
+    # propics()
     print("populating completed")
 
 @app.cli.command("rollback")

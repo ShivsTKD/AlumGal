@@ -24,4 +24,4 @@ class Profile(db.Model):
                 'instagram': self.instagram,
                 'linkedin': self.linkedin,
                 'pro_pic': self.url
-        }
+            }

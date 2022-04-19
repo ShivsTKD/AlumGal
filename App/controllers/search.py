@@ -34,7 +34,6 @@ def user_search(name):
     else:
          return 'Invalid'
 
-
 def adv_search(fields):
     valid_fields = dict()
     results = []
