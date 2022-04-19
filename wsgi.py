@@ -119,7 +119,7 @@ def populate():
     print("populating...")
     # programmes()
     # userprofile()
-    propics()
+    # propics()
     print("populating completed")
 
 @app.cli.command("rollback")
