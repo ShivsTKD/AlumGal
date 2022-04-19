@@ -133,7 +133,7 @@ def get_profile(pid):
 
 @user_views.route('/users', methods=['GET'])
 def list_users():
-    users = get_all_users()
+    users = Profile.query.limit(25).all()
     return render_template('users.html', results=users)
 
 @user_views.route('/users/<username>', methods=['GET'])

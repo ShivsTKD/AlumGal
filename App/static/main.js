@@ -54,3 +54,24 @@ function S_Tab(){
         history.replaceState('', document.title, window.location.origin + window.location.pathname + window.location.search)
     }, 5);
 }
+
+let numUsers = 0;
+
+async function loadMoreUsers(){
+  numUsers += 25;
+  let result = document.getElementById("resultListing");
+  let html = "";
+  let response = await fetch(`/loadusers/${numUsers}`);
+  let users = await response.json();
+  for (let user of users){
+    html += `
+      <a href="/profile/${user.pid}" class="usr">
+        <img class="responsive-img circle" src="/static/Userpics/Zachary Bowen.jpg" alt="${user.first_name} ${user.last_name}">
+        <span>${user.first_name} ${user.last_name}</span>
+        <span>${user.graduation_year}</span>
+      </a>   
+      <div class="divider"></div>
+    `;
+  }
+  result.innerHTML += html;
+}
