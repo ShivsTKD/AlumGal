@@ -57,10 +57,11 @@ def search(name):
         print(user_search(name))
     
 @app.cli.command('test')
-@click.argument('uname')
-def testing_relations(uname):
-    user = User.query.filter_by(username=uname).first()
-    print(user.profile.first())
+@click.argument('id')
+def testing_relations(id):
+    programme = Programme.query.filter_by(id=id).first()
+    profiles = programme.profiles.filter(Profile.graduation_year==2022).all()
+    print([p.first_name for p in profiles])
     
 
 def programmes(): 
