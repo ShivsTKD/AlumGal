@@ -11,6 +11,7 @@ from App.database import db
 from App.models import Programme,User,Profile
 from App.controllers import storage
 from App.controllers import user_search
+
 @app.cli.command("init")
 def initialize():
     create_db(app)
@@ -40,7 +41,7 @@ def delete_tables():
 @app.cli.command("get-user")
 @click.argument("username")
 def get_a_user(username):
-    print(get_user(username))
+    print(get_user(username).profile.programme)
 
 @app.cli.command("get-users")
 def get_users():
@@ -54,6 +55,12 @@ def search(name):
         print(user_search(s[0]+" "+s[1]))
     else:
         print(user_search(name))
+    
+@app.cli.command('test')
+@click.argument('uname')
+def testing_relations(uname):
+    user = User.query.filter_by(username=uname).first()
+    print(user.profile.first())
     
 
 def programmes(): 

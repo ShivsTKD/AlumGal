@@ -7,6 +7,7 @@ class User(db.Model,UserMixin):
     username =  db.Column('username', db.String(60), nullable=False)
     password = db.Column('password', db.String(120), nullable=False)
     email = db.Column('email', db.String(60), nullable=False, unique=True)
+    profile = db.relationship('Profile', backref='user', lazy='dynamic')
 
     def __init__(self, username, password, email):
         self.username = username
