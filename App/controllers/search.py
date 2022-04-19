@@ -38,13 +38,13 @@ def user_search(name):
 def adv_search(fields):
     valid_fields = dict()
     results = []
-    profiles = Profile.query.all()
+    profiles = Profile.query(Profile)
     for key in fields:
         if fields[key] != None:
-            vaild_fields[key] = fields[key]
+            valid_fields[key] = fields[key]
     
     for key, value in valid_fields.items:
-        profiles = profiles.filter(getattr(form, attr).like("%%%s%%" % value))
+        profiles = profiles.filter(getattr(Profile, key).like("%%%s%%" % value))
     
     for profile in profiles:
         results.append(profile.toDict)
