@@ -23,17 +23,18 @@
 {{ super() }}
 
 {% block content %}
-{% if users %}
+{% if results %}
 <div>
    <h3 class="center">List of Alumni Members</h3>
 </div>
-<div id="results">
+<div class="container card" id="resultListing">
    {% for user in results %}
-   <div>
+   <a href="/profile/{{user.pid}}" class="usr">
       <img class="responsive-img circle" src="{{user.url}}" alt="{{user.first_name}} {{user.last_name}}">
       <span>{{user.first_name}} {{user.last_name}}</span>
-
-   </div>   
+      <span>{{user.graduation_year}}</span>
+   </a>   
+   <div class="divider"></div>
    {% endfor%}
 </div>
    

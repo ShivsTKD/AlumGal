@@ -5,7 +5,8 @@ from App.controllers import firebaseconfig
 from os import remove
 
 def get_all_users():
-    return User.query.all()
+    users = Profile.query.all()
+    return users
 
 def get_user(username):
     return User.query.filter_by(username=username).first()

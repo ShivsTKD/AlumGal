@@ -355,6 +355,20 @@ h5{
   margin: auto;
 }
 
+#resultListing{
+  margin: auto;
+}
+
+#resultListing>.usr{
+  width: 80%;
+  height: 4em;
+  padding: 0.5em 0;
+}
+
+#resultListing img{
+  height: 80%;
+}
+
 footer {
   margin-top: 6em;
   padding: 3em 0;

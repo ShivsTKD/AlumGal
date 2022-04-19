@@ -44,7 +44,7 @@ def get_a_user(username):
 
 @app.cli.command("get-users")
 def get_users():
-    print(p.toDict() for p in get_all_users())
+    print([p.toDict() for p in get_all_users()])
 
 @app.cli.command("search")
 @click.argument("name")
@@ -101,7 +101,6 @@ def propics():
     for image in images:
         imgName = splitext(image)
         names.append(imgName[0])
-    ids = []
     for name in names:
         parts = name.split()
         puser = Profile.query.filter_by(first_name = parts[0], last_name = parts[1]).first()
