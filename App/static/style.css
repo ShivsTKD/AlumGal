@@ -337,7 +337,7 @@ h5{
   display: flex;
   justify-content: center;
   flex-direction: column;
-  margin-top: 2em;
+  margin-top: 1em;
 }
 
 #socialInfo>span{
@@ -359,14 +359,38 @@ h5{
   margin: auto;
 }
 
-#resultListing>.usr{
-  width: 80%;
-  height: 4em;
-  padding: 0.5em 0;
+#resultListing a{
+  display: flex;
+  height: 16em;
+  margin-top: 2em;
+  padding: 2em;
+  transition: all 300ms ease;
+}
+
+#resultListing a:hover{
+  transform: scale(1.1);
+}
+
+#resultListing div{
+  display: flex;
+  flex-direction: column;
+  text-align: left;
+  color: black;
+  font-size: 18px;
+  border-left: 1px solid rgb(55, 55, 55);
+}
+
+#resultListing div *{
+  margin: auto 3em;
 }
 
 #resultListing img{
-  height: 80%;
+  height: 12em;
+  width: 12em;
+  border-radius: 50%;
+  object-fit: cover;
+  object-position: top;
+  margin-right: 2em;
 }
 
 footer {

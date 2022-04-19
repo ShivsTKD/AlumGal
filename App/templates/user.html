@@ -25,12 +25,13 @@
 {% block content %}
 <div class="container card center" id="user">
    <div id="details">
-      <h2>{{user.first_name}} {{user.last_name}}</h2>
+      <h3>{{user.first_name}} {{user.last_name}}</h3>
       <div class="divider"></div>
       <h5>Programme</h5><span>{{prog.name}}</span>
       <h5>Degree</h5><span>{{prog.degree}}</span>
       <h5>Department</h5><span>{{prog.department}}</span>
       <h5>Faculty</h5><span>{{prog.faculty}}</span>
+      <h5>Graduation Year</h5><span>{{user.graduation_year}}</span>
       <div style="margin-top: 1em;" class="divider"></div>
       <div id="socialInfo">
          <span>Follow {{user.first_name}} on his Social Media</span>
