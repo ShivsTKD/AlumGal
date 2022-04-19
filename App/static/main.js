@@ -65,12 +65,13 @@ async function loadMoreUsers(){
   let users = await response.json();
   for (let user of users){
     html += `
-      <a href="/profile/${user.pid}" class="usr">
-        <img class="responsive-img circle" src="/static/Userpics/Zachary Bowen.jpg" alt="${user.first_name} ${user.last_name}">
-        <span>${user.first_name} ${user.last_name}</span>
-        <span>${user.graduation_year}</span>
-      </a>   
-      <div class="divider"></div>
+      <a href="/profile/${user.pid}" class="card">
+        <img class="responsive-img" src="/static/Userpics/Zachary Bowen.jpg" alt="${user.first_name} ${user.last_name}">
+        <div>
+          <span>Name:      ${user.first_name} ${user.last_name}</span>
+          <span>Grad Year: ${user.graduation_year}</span>
+        </div>
+      </a>
     `;
   }
   result.innerHTML += html;

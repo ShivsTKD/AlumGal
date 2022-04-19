@@ -323,6 +323,11 @@ h5{
   flex-direction: column;
 }
 
+#details h5 {
+  margin-top: 0.5em;
+  margin-bottom: 0.2em;
+}
+
 #userimg{
   justify-content: center;
 }
@@ -337,7 +342,7 @@ h5{
   display: flex;
   justify-content: center;
   flex-direction: column;
-  margin-top: 1em;
+  margin-top: 0.5em;
 }
 
 #socialInfo>span{
@@ -376,8 +381,8 @@ h5{
   flex-direction: column;
   text-align: left;
   color: black;
-  font-size: 18px;
-  border-left: 1px solid rgb(55, 55, 55);
+  font-size: 20px;
+  border-left: 1px solid rgba(61, 61, 61, 0.5);
 }
 
 #resultListing div *{
@@ -433,4 +438,17 @@ footer>div>span:nth-child(1){
 
 footer>div>span{
   color:rgb(235, 197, 8);
+}
+
+#return {
+  position: fixed;
+  padding: 0.5em;
+  bottom: 2em;
+  right: 3em;
+  opacity: 0.5;
+  transition: all 300ms ease;
+}
+
+#return:hover{
+  opacity: 1;
 }

@@ -34,10 +34,12 @@ def file():
     users = Profile.query.all()[-3:]
     if request.method == 'POST':
         form = request.form
-        if form is None:
-            flash('Please enter first name and last name')
+        if not form['searchbar']:
+            flash('Please enter a name')
             return redirect('/')
-        name = form.data
+             
+        name = form['searchbar']
+        print(name)
         results = user_search(name)
 
         if results == 'Invalid':
@@ -104,16 +106,16 @@ def account_logout():
     flash('Logout successful')
     return redirect('/login')
 
-# @user_views.route('/advsearch', methods=['GET','POST'])
-# @login_required
-# def advsearch():
-#     form = AdvSearch()
-#     if request.method == 'POST':
-#         data = request.form.data
-#         results = adv_search(data)
-#         return results
-#     else:
-#         # return render_template('',form = form)
+@user_views.route('/advsearch', methods=['GET','POST'])
+@login_required
+def advsearch():
+    form = AdvSearch()
+    if request.method == 'POST':
+        data = request.form
+        results = adv_search(data)
+        return results
+    else:
+        return render_template('advsearch.html',form = form)
 
 @user_views.route('/profile/<pid>', methods=['GET'])
 @login_required
