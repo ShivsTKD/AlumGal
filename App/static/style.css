@@ -624,6 +624,10 @@ footer>div>span{
 }
 
 @media screen and (max-width: 480px){
+  #flashedmessage li{
+    width: 100vw;
+  }
+
   #welcomecard h3{
     font-size: 2.5em;
   }
