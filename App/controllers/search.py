@@ -39,8 +39,12 @@ def adv_search(fields):
             valid_fields[key] = fields[key]
 
     if 'last_name' in valid_fields:
+        if valid_fields['last_name'].islower():
+            valid_fields['last_name'] = valid_fields['last_name'].capitalize()
         profile = profile.filter_by(last_name = valid_fields['last_name'])
     if 'first_name' in valid_fields:
+        if valid_fields['first_name'].islower():
+            valid_fields['first_name'] = valid_fields['first_name'].capitalize()
         profile = profile.filter_by(first_name = valid_fields['first_name'])   
     if 'graduation_year' in valid_fields:
         profile = profile.filter_by(graduation_year = valid_fields['graduation_year'])
