@@ -63,5 +63,4 @@ migrate = get_migrate(app)
 
 @app.errorhandler(404)
 def page_not_found(error):
-    print(error.code)
     return redirect(url_for('user_views.home'))

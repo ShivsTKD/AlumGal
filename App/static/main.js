@@ -70,7 +70,7 @@ async function loadMoreUsers(){
   for (let user of users){
     html += `
       <a href="/profile/${user.pid}" class="card">
-        <img class="responsive-img" src="/static/Userpics/Zachary Bowen.jpg" alt="${user.first_name} ${user.last_name}">
+        <img class="responsive-img" src="${user.pro_pic}" alt="${user.first_name} ${user.last_name}">
         <div>
           <span>Name:      ${user.first_name} ${user.last_name}</span>
           <span>Grad Year: ${user.graduation_year}</span>
@@ -88,7 +88,7 @@ function loadMoreResults(){
   for (let i = numUsers; i < (numUsers + 25); i++){
     html += `
       <a href="/profile/${arguments[0][i].pid}" class="card">
-        <img class="responsive-img" src="/static/Userpics/Zachary Bowen.jpg" alt="${arguments[0][i].first_name} ${arguments[0][i].last_name}">
+        <img class="responsive-img" src="${arguments[0][i].url}" alt="${arguments[0][i].first_name} ${arguments[0][i].last_name}">
         <div>
           <span>Name:      ${arguments[0][i].first_name} ${arguments[0][i].last_name}</span>
           <span>Grad Year: ${arguments[0][i].graduation_year}</span>
@@ -100,7 +100,7 @@ function loadMoreResults(){
     for (let i = numUsers - 25; i < arguments[0].length; i++){
       html += `
         <a href="/profile/${arguments[0][i].pid}" class="card">
-          <img class="responsive-img" src="/static/Userpics/Zachary Bowen.jpg" alt="${arguments[0][i].first_name} ${arguments[0][i].last_name}">
+          <img class="responsive-img" src="${arguments[0][i].url}" alt="${arguments[0][i].first_name} ${arguments[0][i].last_name}">
           <div>
             <span>Name:      ${arguments[0][i].first_name} ${arguments[0][i].last_name}</span>
             <span>Grad Year: ${arguments[0][i].graduation_year}</span>

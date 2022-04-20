@@ -227,7 +227,11 @@ input:focus::placeholder {
 }
 
 #content>p:first-child{
-  font-size: 2.5vmax;
+  font-size: 1.8rem;
+}
+
+#content>h3:first-child{
+  font-size: 2.2rem;
 }
 
 #recentAlums{
@@ -243,11 +247,21 @@ input:focus::placeholder {
 }
 
 .carousel-container>.card{
-  height: fit-content;
+  flex-basis: 0;
+  height: 45vmax;
   flex-grow: 3;
   margin: 2em;
   box-shadow: 1px 8px 10px black;
   transition: all 300ms ease-in-out;
+}
+
+.carousel-container .card-image{
+  height: 80%;
+}
+
+.carousel-container img{
+  object-fit: cover;
+  height: 100%;
 }
 
 .carousel-container>.card:hover{
@@ -259,13 +273,13 @@ input:focus::placeholder {
 
 .carousel-container .card-content {
   background-color: rgb(235, 197, 8);
-  height: 7vmax;
+  height: 20%;
   padding: auto;
 }
 
 .carousel-container .card-content>h5 {
   color: black;
-  font-size: 2.2em;
+  font-size: 2.2vmax;
   margin: 0;
   height: 100%;
   display: flex;
@@ -290,11 +304,11 @@ h5{
   margin: 1em 0;
   z-index: 3;
   height: 10vmin;
-  width: 40vmin;
+  width: 30vmax;
   display: flex;
   align-items: center;
   justify-content: center;
-  font-size: 2vmax;
+  font-size: 1.5vmax;
 }
 
 #flashedmessage span{
@@ -556,7 +570,8 @@ footer>div>span{
   }
 
   .carousel-container .card{
-    width: 75%;
+    width: 65%;
+    height: 60%;
     margin: 2em auto;
   }
 }
@@ -611,11 +626,25 @@ footer>div>span{
 
   footer{
     flex-direction: column;
-    font-size: 3.5vmin;
+    font-size: 2vmin;
+  }
+
+  footer #socials{
+    margin: 0.5em auto;
   }
 
   footer>div{
-    margin: 2em auto;
+    flex-basis: 0;
+    padding: 0;
+    height: 25vh;
+  }
+
+  footer>div{
+    margin: 0.5em auto;
+  }
+
+  footer>div>span,footer>div>a{
+    margin: 0.5em auto;
   }
 
   footer>div>img{

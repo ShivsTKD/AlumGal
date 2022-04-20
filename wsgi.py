@@ -41,7 +41,7 @@ def delete_tables():
 @app.cli.command("get-user")
 @click.argument("username")
 def get_a_user(username):
-    print(get_user(username).profile.programme)
+    print(get_user(username).email)
 
 @app.cli.command("get-users")
 def get_users():

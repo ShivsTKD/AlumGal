@@ -35,7 +35,7 @@
    <div class="container" id="resultListing">
       {% for user in results %}
       <a href="/profile/{{user.pid}}" class="card">
-         <img class="responsive-img" src="/static/Userpics/Aaron Solomon.jpg" alt="{{user.first_name}} {{user.last_name}}">
+         <img class="responsive-img" src="{{user.url}}" alt="{{user.first_name}} {{user.last_name}}">
          <div>
             <span>Name:      {{user.first_name}} {{user.last_name}}</span>
             <span>Grad Year: {{user.graduation_year}}</span>
