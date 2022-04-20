@@ -1,5 +1,6 @@
 html {
   scroll-behavior: smooth;
+  overflow-x: hidden;
 }
 
 * {
@@ -14,8 +15,8 @@ input[type="submit"]{
   display: flex;
   height: 15vh;
   background-color: rgb(235, 197, 8);
-  padding-left: 1em;
-  padding-right: 1em;
+  padding-left: 1vw;
+  padding-right: 1vw;
 }
 
 #navbar>a {
@@ -29,31 +30,20 @@ input[type="submit"]{
   align-items: center;
 }
 
-#navbar>div:first-child,#navbar>div:last-child{
+#navbar>div{
   flex-grow: 1;
 }
 
-#navbar>div:nth-child(2){
-  flex-grow: 2;
-}
-
-#navbar>div:nth-child(2)>a{
-  height: 100%;
-}
-
 #navbar>div>a{
+  width: 33vw;
   display: flex;
   justify-content:center;
 }
 
 #navbar img {
-  height: 90%;
-  min-width: 15em;
-  margin: auto;
-}
-
-#navbar li{
-  margin-left: 0.75em;
+  width: 100%;
+  height: auto;
+  max-width: 20em;
 }
 
 .one {
@@ -120,6 +110,7 @@ input:focus::placeholder {
   background-color: white;
   transition: all 500ms ease;
   border: none;
+  display: none;
 }
 
 #searchbar:focus{
@@ -133,7 +124,6 @@ input:focus::placeholder {
   justify-content: center;
   cursor: pointer;
   color: black;
-  margin-left: auto;
   font-size: 2em;
   border-radius: 3px;
   transition: all 300ms ease;
@@ -148,6 +138,7 @@ input:focus::placeholder {
   width: 25em;
   padding: 0.25em;
   transition: all 500ms ease;
+  display: block;
 }
 
 #login {
@@ -228,7 +219,7 @@ input:focus::placeholder {
   width: 6em;
   border-radius: 50%;
   display: block;
-  margin: max(1em, 20vh) auto 1em auto;
+  margin: auto;
 }
 
 #welcomecard{
@@ -495,14 +486,20 @@ footer>div>span{
     padding: 0;
   }
 
+  #searchbar::placeholder{
+    color: black;
+  }
+
   #searchbar:focus{
     width: 90vw;
     height: 3rem;
+    border: 1px black solid;
   }
 
   #searcharea:hover > #searchbar {
     width: 90vw;
     height: 3rem;
+    border: 1px black solid;
   }
 
   #flashedmessage {
@@ -565,8 +562,24 @@ footer>div>span{
 }
 
 @media screen and (max-width: 896px) {
+  #navbar>div:nth-child(2){
+    flex-grow: 2;
+  }
+
+  #navbar>div:nth-child(2)>a{
+    width: 50vw;
+  }
+
   #welcomecard h3{
     font-size: 3.5em;
+  }
+
+  #aside{
+    font-size: 2vmax;
+  }
+
+  #aside a{
+    width: 70vw;
   }
 
   #user{
@@ -613,10 +626,6 @@ footer>div>span{
 @media screen and (max-width: 480px){
   #welcomecard h3{
     font-size: 2.5em;
-  }
-    
-  #navbar>div>a>img{
-    height: 70%;
   }
 
   .carousel-container .card{

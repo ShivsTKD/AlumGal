@@ -25,6 +25,11 @@ function removeFlash(element){
 
 M.AutoInit();
 
+const searchbar = document.getElementById("searchbar");
+document.addEventListener("DOMContentLoaded", () => {
+  searchbar.style.display = 'block';
+});
+
 let password = document.querySelector("#password");
 let confirm_password = document.querySelector("#confirm_password");
 
