@@ -41,9 +41,15 @@ input[type="submit"]{
   height: 100%;
 }
 
+#navbar>div>a{
+  display: flex;
+  justify-content:center;
+}
+
 #navbar img {
   height: 90%;
   min-width: 15em;
+  margin: auto;
 }
 
 #navbar li{
@@ -105,13 +111,15 @@ input:focus::placeholder {
 }
 
 #searchbar {
+  position: absolute;
+  right: 6vw;
+  z-index: 1;
   width: 0;
   padding: 0;
   margin-top: 0.5em;
-  margin-right: 1em;
   background-color: white;
-  border-bottom: 1px solid white;
   transition: all 500ms ease;
+  border: none;
 }
 
 #searchbar:focus{
@@ -167,7 +175,7 @@ input:focus::placeholder {
 }
 
 #aside {
-  height: 100%;
+  height: 100vh;
   background-color: rgb(30,30,30);
   position: absolute;
   top: 0;
@@ -244,6 +252,7 @@ input:focus::placeholder {
 }
 
 .carousel-container>.card{
+  height: fit-content;
   flex-grow: 3;
   margin: 2em;
   box-shadow: 1px 8px 10px black;
@@ -257,10 +266,6 @@ input:focus::placeholder {
   transition: all 300ms ease-in-out;
 }
 
-.carousel-container img{
-  height: 75vmin;
-}
-
 .carousel-container .card-content {
   background-color: rgb(235, 197, 8);
   height: 7vmax;
@@ -269,8 +274,12 @@ input:focus::placeholder {
 
 .carousel-container .card-content>h5 {
   color: black;
-  font-size: 4vmin;
+  font-size: 2.2em;
   margin: 0;
+  height: 100%;
+  display: flex;
+  justify-content: center;
+  align-items: center;
 }
 
 h5{
@@ -294,6 +303,7 @@ h5{
   display: flex;
   align-items: center;
   justify-content: center;
+  font-size: 2vmax;
 }
 
 #flashedmessage span{
@@ -330,7 +340,7 @@ h5{
 }
 
 #user{
-  height: 80vh;
+  height: fit-content;
   margin: auto;
   display: flex;
   flex-direction: row;
@@ -412,7 +422,7 @@ h5{
   margin: auto 3em;
 }
 
-#resultListing img{
+#resultListing>a>img{
   height: 12em;
   width: 12em;
   border-radius: 50%;
@@ -476,13 +486,35 @@ footer>div>span{
 }
 
 @media screen and (max-width: 1280px) {
-  .carousel-container img{
-    height: 50vmin;
+  #searchbar{
+    margin: 0;
+    height: 0;
+    right: 5vw;
+    top: 15.5vh;
+    width: 90vw;
+    padding: 0;
   }
 
-  .card-content{
-    margin: 5px auto;
-    height: 7vmax;
+  #searchbar:focus{
+    width: 90vw;
+    height: 3rem;
+  }
+
+  #searcharea:hover > #searchbar {
+    width: 90vw;
+    height: 3rem;
+  }
+
+  #flashedmessage {
+    top: 20vh;
+  }
+
+  #flashedmessage li{
+    width: 50vw;
+  }
+
+  .carousel-container .card-content{
+    height: 8vmax;
   }
 
   #aboutuscard{
@@ -491,20 +523,55 @@ footer>div>span{
 }
 
 @media screen and (max-width: 1024px) {
-  .carousel-container img{
-    height: 35vmin;
+  #welcomecard{
+    width: 100%;
+    margin: auto;
+  }
+
+  #welcomecard .card{
+    width: 100%;
+  }
+
+  #welcomecard h3{
+    font-size: 3.5em;
+  }
+
+  #aboutuscard p{
+    font-size: 2vmin;
+  }
+}
+
+@media screen and (max-width: 1023px) {
+  #welcomecard h3{
+    font-size: 5em;
   }
 
   #aboutuscard{
     width: 50vw;
   }
+
+  #aboutuscard p{
+    font-size: 2.2vmin;
+  }
+
+  .carousel-container {
+    flex-direction: column;
+  }
+
+  .carousel-container .card{
+    width: 75%;
+    margin: 2em auto;
+  }
 }
 
 @media screen and (max-width: 896px) {
+  #welcomecard h3{
+    font-size: 3.5em;
+  }
 
   #user{
     flex-direction: column;
-    height: 90vh;
+    height: fit-content;
   }
 
   #details{
@@ -520,25 +587,9 @@ footer>div>span{
     height: 90%;
   }
 
-  #welcomecard h3{
-    font-size: 2em;
-  }
-
-  .carousel-container img{
-    height: 80%;
-  }
-
-  .carousel-container {
-    flex-direction: column;
-  }
-
-  .carousel-container .card{
-    width: 75%;
-    margin: 2em auto;
-  }
-
   #aboutuscard{
     width: 100%;
+    font-size: 3px;
   }
 
   #aboutuscard p{
@@ -560,15 +611,58 @@ footer>div>span{
 }
 
 @media screen and (max-width: 480px){
+  #welcomecard h3{
+    font-size: 2.5em;
+  }
+    
   #navbar>div>a>img{
-    height: 80%;
+    height: 70%;
   }
 
   .carousel-container .card{
-    margin: 4em auto;
+    width: 90%;
+    margin: 2em auto;
+  }
+
+  .carousel-container .card-content>h5{
+    font-size: 2.5vmax;
   }
 
   .carousel-container .card img{
     height: 100%;
+  }
+
+  #resultListing>.card{
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    height: fit-content;
+  }
+
+  #resultListing div{
+    width: 100%;
+    border-left: none;
+    border-top: 1px solid rgba(61, 61, 61, 0.5);
+  }
+
+  #resultListing span{
+    text-align: center;
+    width: 90%;
+    margin: 0.5em 0;
+  }
+
+  #resultListing>a>img{
+    height: 10em;
+    width: 10em;
+    border-radius: 50%;
+    object-fit: cover;
+    object-position: top;
+    margin: auto auto 2em auto;
+  }
+}
+
+@media screen and (max-width: 400px) {
+  #aboutuscard p{
+    font-size: 4vmin;
   }
 }

@@ -1,5 +1,5 @@
 const aside = document.getElementById('aside');
-const mq = window.matchMedia('(max-width: 600px)');
+const mq = window.matchMedia('(max-width: 896px)');
 
 function asideDisplay(){
   if (!mq.matches && aside.offsetWidth === 0){
