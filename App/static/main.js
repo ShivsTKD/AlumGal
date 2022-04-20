@@ -75,3 +75,34 @@ async function loadMoreUsers(){
   }
   result.innerHTML += html;
 }
+
+function loadMoreResults(){
+  numUsers += 25;
+  let result = document.getElementById("resultListing");
+  let html = "";
+  for (let i = numUsers; i < (numUsers + 25); i++){
+    html += `
+      <a href="/profile/${arguments[0][i].pid}" class="card">
+        <img class="responsive-img" src="/static/Userpics/Zachary Bowen.jpg" alt="${arguments[0][i].first_name} ${arguments[0][i].last_name}">
+        <div>
+          <span>Name:      ${arguments[0][i].first_name} ${arguments[0][i].last_name}</span>
+          <span>Grad Year: ${arguments[0][i].graduation_year}</span>
+        </div>
+      </a>
+    `;
+  }
+  if (numUsers - 25 > arguments[0].length){
+    for (let i = numUsers - 25; i < arguments[0].length; i++){
+      html += `
+        <a href="/profile/${arguments[0][i].pid}" class="card">
+          <img class="responsive-img" src="/static/Userpics/Zachary Bowen.jpg" alt="${arguments[0][i].first_name} ${arguments[0][i].last_name}">
+          <div>
+            <span>Name:      ${arguments[0][i].first_name} ${arguments[0][i].last_name}</span>
+            <span>Grad Year: ${arguments[0][i].graduation_year}</span>
+          </div>
+        </a>
+      `;
+    }
+  }
+  result.innerHTML += html;
+}

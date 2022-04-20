@@ -41,8 +41,6 @@ def adv_search(fields):
     for key in fields:
         if fields[key] is not None and fields[key] != '':
             valid_fields[key] = fields[key]
-    
-    print(valid_fields)
 
     if 'last_name' in valid_fields:
         profile = profile.filter_by(last_name = valid_fields['last_name'])

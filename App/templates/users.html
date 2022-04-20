@@ -45,7 +45,7 @@
    </div>
 </div>
 <div class="center">
-   <button class="btn waves-effect waves-light green center" style="margin: 2em auto; color: white;" onclick="loadMoreUsers()">Load More Users</button>
+   <button class="btn waves-effect waves-light green center" style="margin: 2em auto; color: white;" {% if not search %} onclick="loadMoreUsers()" {% else %} onclick="loadMoreResults({{objs|safe}})" {% endif %}>Load More Users</button>
 </div>
 <a class="card" id="return" href="#top"><i class="material-icons">keyboard_arrow_up</i></a>
 {% endblock %}

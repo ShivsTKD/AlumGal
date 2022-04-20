@@ -105,8 +105,10 @@ def advsearch():
     form = AdvSearch()
     if request.method == 'POST':
         data = request.form
-        results = adv_search(data)
-        return render_template('users.html', results=results)
+        objs = adv_search(data)
+        objs = [o.toDict() for o in objs]
+        results = objs[:25]
+        return render_template('users.html', results=results, objs=objs, search=True)
     else:
         programmes = get_programmes()
         degrees = ['B.Sc.', 'M.Sc.']
@@ -124,4 +126,4 @@ def get_profile(pid):
 @user_views.route('/users', methods=['GET'])
 def list_users():
     users = Profile.query.limit(25).all()
-    return render_template('users.html', results=users)
+    return render_template('users.html', results=users, search=False)
