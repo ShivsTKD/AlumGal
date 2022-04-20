@@ -61,9 +61,6 @@ def create_app(config={}):
 app = create_app()
 migrate = get_migrate(app)
 
-if __name__ == "__main__":
-    app.run('0.0.0.0', 8080, debug=True)
-
 @app.errorhandler(404)
 def page_not_found(error):
     if error == 404:
