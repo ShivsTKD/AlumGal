@@ -294,18 +294,19 @@ h5{
   z-index: 1;
   padding: 0;
   position: fixed; 
-  width: 40vmin;
+  width: fit-content;
 }
 
 #flashedmessage li{
   margin: 1em 0;
   z-index: 3;
-  height: 10vmin;
-  width: 30vmax;
+  height: 8vmin;
+  width: fit-content;
   display: flex;
   align-items: center;
   justify-content: center;
-  font-size: 1.5vmax;
+  font-size: 1rem;
+  padding: 0.5rem 2rem;
 }
 
 #flashedmessage span{
@@ -523,10 +524,6 @@ footer>div>span{
     top: 20vh;
   }
 
-  #flashedmessage li{
-    width: 50vw;
-  }
-
   #aboutuscard{
     width: 45vw;
   }
@@ -650,10 +647,6 @@ footer>div>span{
 }
 
 @media screen and (max-width: 480px){
-  #flashedmessage li{
-    width: 100vw;
-  }
-
   #welcomecard h3{
     font-size: 2.5em;
   }
