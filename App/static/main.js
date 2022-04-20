@@ -19,9 +19,8 @@ function asideDisplay(){
   }
 }
 
-function removeFlash(){
-    const fm = document.getElementById("flashedmessage");
-    fm.style.display = "none";
+function removeFlash(element){
+    element.style.display = "none";
 }
 
 M.AutoInit();

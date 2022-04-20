@@ -25,11 +25,10 @@
     </nav>
     {% with messages = get_flashed_messages() %}
     {% if messages %}
-    <nav id="flashedmessage" class="white black-text">
-      <ul class="flashes">
+    <nav id="flashedmessage" class="black-text">
+      <ul>
       {% for message in messages %}
-        <li>{{ message }}</li>
-        <span onclick="removeFlash()">✕</span>
+        <li class="white flashes card">{{ message }}<span onclick="removeFlash(this.parentNode)">✕</span></li>
       {% endfor %}
       </ul>
     </nav>
@@ -42,9 +41,10 @@
     <aside id="aside">
       <span onclick="asideDisplay()">✕</span>
       <a href="/">Home</a>
-      <a href="/#recentAlums">Most Recent Alumni</a>
+      <a href="/advsearch">Advanced Search</a>
+      <a href="/#recentAlums">Recent Alumni</a>
       <a href="/#aboutus">About Us</a>
-      <a href="/#socials">Check Out Our Socials</a>
+      <a href="/#socials">UCE Socials</a>
       <a href="/logout">Logout</a>
       <img src="/static/pictures/head.png" alt="HeadLogo">
     </aside>

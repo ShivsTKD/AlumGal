@@ -105,7 +105,6 @@ def advsearch():
     form = AdvSearch()
     if request.method == 'POST':
         data = request.form
-        #print(data)
         results = adv_search(data)
         return render_template('users.html', results=results)
     else:
@@ -118,8 +117,7 @@ def advsearch():
 @login_required
 def get_profile(pid):
     user = Profile.query.filter_by(pid = pid).first()
-    prog = Programme.query.filter_by(id = user.programme_id).first()
-    return render_template('user.html', user=user, prog=prog)
+    return render_template('user.html', user=user)
     #anchor this route on to the student card to fetch profile details
 
 

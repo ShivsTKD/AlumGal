@@ -56,29 +56,5 @@ def adv_search(fields):
         profile = profile.filter(Profile.programme.has(name = valid_fields['name']))
 
     obj = profile.all()
-    print(obj)
-
-    for  i in obj:
-        print( i.first_name, i.last_name)
-
-    
-    
-    # for attr,key in valid_fields.items():
-    #     if key == 'graduation_year':
-    #         profiles = Profile.query.filter_by(graduation_year=int(key))
-    #     else:
-    #         profiles = profiles.filter(getattr(Profile, attr).like("%%%s%%" % key)).all()
-
-    #     if key == 'name' or key == 'degree':
-    #         progs = Programme.query.filter(getattr(Programme, "%").like("%%%s%%" % valid_fields[key])).all()
-
-    # if progs:
-    #     for p in progs:
-    #         results.append(p.profiles)
-        
-
-    # for profile in profiles:
-    #     results.append(profile.toDict())
-
-    return None
+    return obj
     
