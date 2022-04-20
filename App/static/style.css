@@ -18,13 +18,8 @@ input[type="submit"]{
   padding-right: 1em;
 }
 
-#navbar a {
+#navbar>a {
   height: 100%;
-}
-
-#navbar img{
-  height: 100%;
-  min-width: 20em;
 }
 
 #navbar>div{
@@ -32,7 +27,23 @@ input[type="submit"]{
   height: 100%;
   display: flex;
   align-items: center;
-  flex-grow: 3;
+}
+
+#navbar>div:first-child,#navbar>div:last-child{
+  flex-grow: 1;
+}
+
+#navbar>div:nth-child(2){
+  flex-grow: 2;
+}
+
+#navbar>div:nth-child(2)>a{
+  height: 100%;
+}
+
+#navbar img {
+  height: 90%;
+  min-width: 15em;
 }
 
 #navbar li{
@@ -212,6 +223,18 @@ input:focus::placeholder {
   margin: max(1em, 20vh) auto 1em auto;
 }
 
+#welcomecard{
+ margin-left: 6.5em; 
+}
+
+#content>p:first-child{
+  font-size: 2.5vmax;
+}
+
+#recentAlums{
+  font-size: 4vmax;
+}
+
 .carousel-container{
   display:flex;
   flex-direction: row;
@@ -223,7 +246,7 @@ input:focus::placeholder {
 .carousel-container>.card{
   flex-grow: 3;
   margin: 2em;
-  box-shadow: 0 8px 10px 0 black;
+  box-shadow: 1px 8px 10px black;
   transition: all 300ms ease-in-out;
 }
 
@@ -240,10 +263,14 @@ input:focus::placeholder {
 
 .carousel-container .card-content {
   background-color: rgb(235, 197, 8);
+  height: 7vmax;
+  padding: auto;
 }
 
 .carousel-container .card-content>h5 {
   color: black;
+  font-size: 4vmin;
+  margin: 0;
 }
 
 h5{
@@ -288,6 +315,10 @@ h5{
 #aboutuscard>* {
   visibility: hidden;
   transition: all 200ms ease;
+}
+
+#aboutuscard h2{
+  font-size: 3vmax;
 }
 
 #aboutus:hover > #aboutuscard{
@@ -397,6 +428,7 @@ footer {
   display: flex;
   flex-direction: row;
   color: white;
+  font-size: 2vmin;
 }
 
 footer>div{
@@ -411,9 +443,7 @@ footer>div *{
 }
 
 footer>div>img{
-  min-height: 8em;
-  height: 15vmin;
-  max-width: 25vmin;
+  width: 12em;
 }
 
 footer>div>a{
@@ -443,4 +473,102 @@ footer>div>span{
 
 #return:hover{
   opacity: 1;
+}
+
+@media screen and (max-width: 1280px) {
+  .carousel-container img{
+    height: 50vmin;
+  }
+
+  .card-content{
+    margin: 5px auto;
+    height: 7vmax;
+  }
+
+  #aboutuscard{
+    width: 45vw;
+  }
+}
+
+@media screen and (max-width: 1024px) {
+  .carousel-container img{
+    height: 35vmin;
+  }
+
+  #aboutuscard{
+    width: 50vw;
+  }
+}
+
+@media screen and (max-width: 896px) {
+
+  #user{
+    flex-direction: column;
+    height: 90vh;
+  }
+
+  #details{
+    order: 2;
+  }
+
+  #userimg{
+    order: 1;
+    height: 40vh;
+  }
+
+  #userimg img{
+    height: 90%;
+  }
+
+  #welcomecard h3{
+    font-size: 2em;
+  }
+
+  .carousel-container img{
+    height: 80%;
+  }
+
+  .carousel-container {
+    flex-direction: column;
+  }
+
+  .carousel-container .card{
+    width: 75%;
+    margin: 2em auto;
+  }
+
+  #aboutuscard{
+    width: 100%;
+  }
+
+  #aboutuscard p{
+    font-size: 3vmin;
+  }
+
+  footer{
+    flex-direction: column;
+    font-size: 3.5vmin;
+  }
+
+  footer>div{
+    margin: 2em auto;
+  }
+
+  footer>div>img{
+    width: 10em;
+  }
+}
+
+@media screen and (max-width: 480px){
+  #navbar>div>a>img{
+    height: 80%;
+  }
+
+  .carousel-container .card{
+    margin: 4em auto;
+  }
+
+  .carousel-container .card img{
+    height: 100%;
+  }
 }
