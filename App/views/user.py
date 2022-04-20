@@ -37,7 +37,6 @@ def home():
             return redirect('/')
              
         name = form['searchbar']
-        print(name)
         results = user_search(name)
 
         if results == 'Invalid':
@@ -48,7 +47,7 @@ def home():
             flash('No results found')
             return redirect('/')
         
-        return render_template('users.html',results=results) 
+        return render_template('users.html',results=results, search=True) 
     return render_template('home.html',users=users)
 
 
