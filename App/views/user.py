@@ -48,7 +48,7 @@ def home():
             flash('No results found')
             return redirect('/')
         
-        return render_template('users.html',results=results) # add results page here
+        return render_template('users.html',results=results) 
     return render_template('home.html',users=users)
 
 
@@ -120,7 +120,7 @@ def advsearch():
 def get_profile(pid):
     user = Profile.query.filter_by(pid = pid).first()
     return render_template('user.html', user=user)
-    #anchor this route on to the student card to fetch profile details
+
 
 
 @user_views.route('/users', methods=['GET'])

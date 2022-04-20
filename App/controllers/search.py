@@ -20,15 +20,12 @@ def user_search(name):
             parts[0] = parts[0].capitalize()
         if parts[1].islower():
             parts[1] = parts[1].capitalize()
-        print(parts)
         user = Profile.query.filter_by(first_name=parts[0], last_name = parts[1])
         if len(user.all()) != 0:
-            print('check') 
             return user.all()  
         else:
             user = Profile.query.filter_by(first_name=parts[1], last_name = parts[0])
             if len(user.all()) != 0:
-                print('check') 
                 return user.all()
             return None
     else:
@@ -36,7 +33,6 @@ def user_search(name):
 
 def adv_search(fields):
     valid_fields = dict()
-    results = []
     profile = db.session.query(Profile)
     for key in fields:
         if fields[key] is not None and fields[key] != '':
