@@ -18,18 +18,18 @@
         <form class="card col s12" method="post" action="/login" style="padding: 1em;">
             <div class="row">
                 <div class="input-field col s12">
-                    {{ form.username(class="validate", autofocus=true) }}
+                    {{ form.username(class="validate", autofocus=true, value="bob", name="username") }}
                     <label>Username</label> 
                 </div>
             </div>
             <div class="row">
                 <div class="input-field col s12">
-                    {{ form.password(class="validate") }}
+                    {{ form.password(class="validate", value="bobpass", name="password) }}
                     <label>Password</label> 
                 </div>
             </div>
             
-            <button class="btn waves-effect waves-light green" style="display: flex; align-items: center;">
+            <button class="btn waves-effect waves-light green" name="login" style="display: flex; align-items: center;">
                 Submit
                 <i class="material-icons" style="margin-left: 0.5em;">send</i>
             </button>
